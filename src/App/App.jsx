@@ -73,7 +73,9 @@ function App() {
           <Route path="/sites-dev" element={<SitesDev />} />
           <Route path="/b24" element={<Bitrix24 />} />
           <Route path="/cybersecurity" element={<CyberSecurity />} />
-          <Route path="/chat-Rgpt" element={<ChatGPT />} />
+         
+          {/*  <Route path="/chat-Rgpt" element={<ChatGPT />} /> */}
+          
           <Route path="/noPage" element={<NoPage />} />
 
           {/* <Route path="/game" element={<Game />} />
