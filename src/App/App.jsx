@@ -71,7 +71,7 @@ function App() {
           <Route path="/telegram-bots" element={<TelegramBots />} />
           <Route path="/1c-development" element={<OneCDev />} />
           <Route path="/sites-dev" element={<SitesDev />} />
-          <Route path="/b24" element={<Bitrix24 />} />
+          <Route path="/b24" element={<Bitrix24  setBodyScroll={setBodyScroll}/>} />
           <Route path="/cybersecurity" element={<CyberSecurity />} />
          
           {/*  <Route path="/chat-Rgpt" element={<ChatGPT />} /> */}
