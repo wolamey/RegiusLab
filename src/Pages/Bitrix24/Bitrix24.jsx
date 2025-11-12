@@ -73,7 +73,15 @@ export default function Bitrix24({setBodyScroll}) {
     window.open(videoUrl, '_blank', 'noopener,noreferrer');
   };
   const [modal, setModal] = useState(false);
+ const [selectedUsers, setSelectedUsers] = useState("50");
 
+  // Данные по ценам для корпоративного портала
+  const corporatePrices = {
+    "50": "5 400 BYN",
+    "100": "7 800 BYN", 
+    "250": "11 400 BYN",
+    "500": "20 100 BYN"
+  };
   return (
     <div>
       {/* <ServiceTemplate currentInfo={serviceDb.Bitrix24} /> */}
@@ -194,37 +202,101 @@ export default function Bitrix24({setBodyScroll}) {
               </div>
             </div>
 
-            <div className="box-version__capabilities">
-              <h3 className="box-version__section-title">Возможности коробочной версии</h3>
-              <div className="box-version__capabilities-grid">
-                <div className="box-version__capability">
-                  <h4 className="box-version__capability-title">Открытый исходный код</h4>
-                  <p className="box-version__capability-description">
-                    Дорабатывайте интерфейс и функциональность под индивидуальные 
-                    потребности вашей компании без ограничений
-                  </p>
-                </div>
-                <div className="box-version__capability">
-                  <h4 className="box-version__capability-title">Веб-кластер</h4>
-                  <p className="box-version__capability-description">
-                    Масштабируемое решение для крупных организаций с большим 
-                    объемом данных и количеством пользователей
-                  </p>
-                </div>
-                <div className="box-version__capability">
-                  <h4 className="box-version__capability-title">Безопасность</h4>
-                  <p className="box-version__capability-description">
-                    Полный контроль над безопасностью данных и доступом к системе
-                  </p>
-                </div>
-                <div className="box-version__capability">
-                  <h4 className="box-version__capability-title">Многодепартаментность</h4>
-                  <p className="box-version__capability-description">
-                    Идеальное решение для компаний с филиалами в разных городах
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="box-version__capabilities">
+  <h3 className="box-version__section-title">Возможности коробочной версии</h3>
+  <div className="box-version__capabilities-grid">
+    <div className="box-version__capability">
+      <h4 className="box-version__capability-title">Открытый исходный код</h4>
+      <p className="box-version__capability-description">
+        Дорабатывайте интерфейс и функциональность под индивидуальные 
+        потребности вашей компании без ограничений. Своими силами или с привлечением 
+        интеграторов можно дорабатывать 1С-Битрикс24 под бизнес-логику вашей компании.
+      </p>
+    </div>
+    
+    <div className="box-version__capability">
+      <h4 className="box-version__capability-title">Веб-кластер</h4>
+      <p className="box-version__capability-description">
+        Масштабируемое решение для крупных организаций с большим 
+        объемом данных и количеством пользователей. Комбинация технологических решений, 
+        позволяющих распределить портал на несколько серверов для обеспечения высокой 
+        доступности, балансировки нагрузки и масштабирования.
+      </p>
+    </div>
+    
+    <div className="box-version__capability">
+      <h4 className="box-version__capability-title">Безопасность</h4>
+      <p className="box-version__capability-description">
+        Полный контроль над безопасностью данных и доступом к системе. 
+        Размещайте 1C-Битрикс24 на собственных серверах компании или в датацентре, 
+        самостоятельно следите за надежностью работы.
+      </p>
+    </div>
+    
+    <div className="box-version__capability">
+      <h4 className="box-version__capability-title">Многодепартаментность</h4>
+      <p className="box-version__capability-description">
+        Идеальное решение для компаний с филиалами в разных городах. 
+        Каждый филиал может иметь свой внутренний сервис при координации работы 
+        со всей компанией.
+      </p>
+    </div>
+    
+    <div className="box-version__capability">
+      <h4 className="box-version__capability-title">Виртуальная машина</h4>
+      <p className="box-version__capability-description">
+        Используйте бесплатный настроенный виртуальный сервер для оптимальной работы 
+        с продуктами 1С-Битрикс. Включает ОС, веб-сервер, БД, firewall, почтовый сервер 
+        и все необходимые настройки для надежности и производительности.
+      </p>
+    </div>
+    
+    <div className="box-version__capability">
+      <h4 className="box-version__capability-title">Кастомизация дизайна</h4>
+      <p className="box-version__capability-description">
+        Меняйте дизайн интерфейса согласно корпоративному стилю компании 
+        или брендбуку без ограничений. Создавайте индивидуальный имидж компании 
+        на основе типового 1C-Битрикс24.
+      </p>
+    </div>
+    
+    <div className="box-version__capability">
+      <h4 className="box-version__capability-title">Проектный менеджмент</h4>
+      <p className="box-version__capability-description">
+        Координируйте усилия команды с помощью проектных инструментов. 
+        Определяйте роли и права доступа, планируйте этапы, храните документы на Диске, 
+        ведите календарь и общайтесь в чатах проектов.
+      </p>
+    </div>
+    
+    <div className="box-version__capability">
+      <h4 className="box-version__capability-title">CRM и автоматизация</h4>
+      <p className="box-version__capability-description">
+        Ведите клиентов по всем этапам жизненного цикла, автоматизируйте продажи 
+        с помощью роботов и бизнес-процессов. Используйте CRM-маркетинг для 
+        таргетированных рассылок и повышения повторных продаж.
+      </p>
+    </div>
+    
+    <div className="box-version__capability">
+      <h4 className="box-version__capability-title">Внутренние коммуникации</h4>
+      <p className="box-version__capability-description">
+        Цифровое рабочее пространство для всей компании. Ставьте и контролируйте задачи, 
+        общайтесь в чатах, обсуждайте планы в профильных группах. Будьте всегда на связи 
+        через десктопные и мобильные приложения.
+      </p>
+    </div>
+    
+    <div className="box-version__capability">
+      <h4 className="box-version__capability-title">HR-менеджмент</h4>
+      <p className="box-version__capability-description">
+        Организуйте легкий вход новых сотрудников в коллектив, знакомство со структурой 
+        компании. Автоматизируйте оповещение команды о новых коллегах, заполнение профилей 
+        и вступление в рабочие группы.
+      </p>
+    </div>
+  </div>
+</div>
     <div className="bitrix-weightless">
         <div className="bitrix-weightless__header">
           <h2 className="bitrix-weightless__title">Новый Битрикс24 Невесомость</h2>
@@ -321,7 +393,7 @@ export default function Bitrix24({setBodyScroll}) {
             </p>
             <button        onClick={() => {
               setModal(true);
-              setIsScrollDisabled(true);
+              setBodyScroll(true);
             }} className="bitrix-weightless__cta-button role__button flare-button">
               Получить консультацию по обновлению
             </button>
@@ -329,34 +401,206 @@ export default function Bitrix24({setBodyScroll}) {
         </div>
       </div>
 
-            <div className="box-version__editions">
-              <h3 className="box-version__section-title">Редакции и стоимость</h3>
-              <div className="box-version__editions-grid">
-                <div className="box-version__edition">
-                  <h4 className="box-version__edition-title">Интернет-магазин + CRM</h4>
-                  <p className="box-version__edition-description">
-                    Все необходимые инструменты для автоматизации интернет-магазина
-                  </p>
-                  <div className="box-version__price">от 1 500 BYN</div>
+
+       <div className="box-version__pricing">
+          <h3 className="box-version__section-title">Редакции и стоимость</h3>
+          
+          <div className="pricing-table-container overflow-auto">
+          <div className="pricing-table min-w-[1024px]">
+            {/* Заголовок таблицы */}
+            <div className="pricing-table__row pricing-table__row--header">
+              <div className="pricing-table__sidebar">
+                <div className="pricing-table__title">Редакции</div>
+              </div>
+              <div className="pricing-table__body">
+                <div className="pricing-table__item">
+                  <div className="pricing-table__title">Интернет-магазин + CRM</div>
                 </div>
-                <div className="box-version__edition">
-                  <h4 className="box-version__edition-title">Корпоративный портал</h4>
-                  <p className="box-version__edition-description">
-                    Корпоративный Битрикс24 с индивидуальными настройками
-                  </p>
-                  <div className="box-version__price">от 2 500 BYN</div>
+                <div className="pricing-table__item">
+                  <div className="pricing-table__title">Корпоративный портал</div>
                 </div>
-                <div className="box-version__edition">
-                  <h4 className="box-version__edition-title">Энтерпрайз</h4>
-                  <p className="box-version__edition-description">
-                    Для компаний от 500 сотрудников с многодепартаментностью 
-                    и максимальным уровнем поддержки
-                  </p>
-                  <div className="box-version__price">от 5 000 BYN</div>
+                <div className="pricing-table__item">
+                  <div className="pricing-table__title">Энтерпрайз</div>
                 </div>
               </div>
             </div>
 
+            {/* Пользователи */}
+            <div className="pricing-table__row">
+              <div className="pricing-table__sidebar">
+                <div className="pricing-table__sidebar-title">
+                  <span className="pricing-table__icon">👥</span>
+                  Пользователи
+                </div>
+                <div className="pricing-table__sub-description">
+                  число сотрудников в вашем Битрикс24
+                </div>
+              </div>
+              <div className="pricing-table__body">
+                <div className="pricing-table__item">
+                  <div className="pricing-table__users">
+                    <div className="pricing-table__users-value">12</div>
+                  </div>
+                </div>
+                <div className="pricing-table__item">
+                  <div className="pricing-table__users">
+                    <div className="pricing-table__users-selector">
+                      {["50", "100", "250", "500"].map((count) => (
+                        <button
+                          key={count}
+                          className={`pricing-table__users-count ${
+                            selectedUsers === count ? "active" : ""
+                          }`}
+                          onClick={() => setSelectedUsers(count)}
+                        >
+                          {count}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="pricing-table__item">
+                  <div className="pricing-table__users">
+                    <div className="pricing-table__users-value">1000+</div>
+                 
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Цены */}
+            <div className="pricing-table__row">
+              <div className="pricing-table__sidebar">
+                <div className="pricing-table__sidebar-title">
+                  <span className="pricing-table__icon">💰</span>
+                  Стоимость
+                </div>
+              </div>
+              <div className="pricing-table__body">
+                <div className="pricing-table__item">
+                  <div className="pricing-table__price">
+                    <div className="pricing-table__price-value">3 700 BYN</div>
+                    <div className="pricing-table__price-description">Лицензия 12 мес</div>
+                  </div>
+                </div>
+                <div className="pricing-table__item">
+                  <div className="pricing-table__price">
+                    <div className="pricing-table__price-value">
+                      {corporatePrices[selectedUsers]}
+                    </div>
+                    <div className="pricing-table__price-description">Лицензия 12 мес</div>
+                  </div>
+                </div>
+                <div className="pricing-table__item">
+                  <div className="pricing-table__price">
+                    <div className="pricing-table__price-value">38 700+ BYN</div>
+                    <div className="pricing-table__price-description">Лицензия 12 мес</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Дополнительные возможности */}
+            <div className="pricing-table__row">
+              <div className="pricing-table__sidebar">
+                <div className="pricing-table__sidebar-title">
+                  <span className="pricing-table__icon">⚡</span>
+                  Дополнительно
+                </div>
+              </div>
+              <div className="pricing-table__body">
+                <div className="pricing-table__item">
+                  <div className="pricing-table__features">
+                    <span className="pricing-table__feature success">Экстранет</span>
+                    <span className="pricing-table__feature success">eCommerce-платформа</span>
+                    <span className="pricing-table__feature">Документы Онлайн</span>
+                    <span className="pricing-table__feature">Многодепартаментность</span>
+                    <span className="pricing-table__feature">Веб-кластер</span>
+                    <span className="pricing-table__feature">VIP поддержка 24/7</span>
+                  </div>
+                </div>
+                <div className="pricing-table__item">
+                  <div className="pricing-table__features">
+                    <span className="pricing-table__feature success">Экстранет</span>
+                    <span className="pricing-table__feature success">eCommerce-платформа</span>
+                    <span className="pricing-table__feature success">Документы Онлайн</span>
+                    <span className="pricing-table__feature">Многодепартаментность</span>
+                    <span className="pricing-table__feature">Веб-кластер</span>
+                    <span className="pricing-table__feature">VIP поддержка 24/7</span>
+                  </div>
+                </div>
+                <div className="pricing-table__item">
+                  <div className="pricing-table__features">
+                    <span className="pricing-table__feature success">Экстранет</span>
+                    <span className="pricing-table__feature success">eCommerce-платформа</span>
+                    <span className="pricing-table__feature success">Документы Онлайн</span>
+                    <span className="pricing-table__feature success">Многодепартаментность</span>
+                    <span className="pricing-table__feature success">Веб-кластер</span>
+                    <span className="pricing-table__feature success">VIP поддержка 24/7</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Кнопки действий */}
+            {/* <div className="pricing-table__row">
+              <div className="pricing-table__sidebar">
+                <div className="pricing-table__actions">
+                  <a 
+                    href="https://www.1c-bitrix.by/buy/intranet.php" 
+                    className="pricing-table__button pricing-table__button--primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    купить
+                  </a>
+                  <a 
+                    href="/partners/" 
+                    className="pricing-table__button pricing-table__button--secondary"
+                  >
+                    заказать у партнёров
+                  </a>
+                </div>
+              </div>
+              <div className="pricing-table__body">
+                <div className="pricing-table__item">
+                  <div className="pricing-table__action">
+                    <a 
+                      href="/prices/try_biz.php" 
+                      className="pricing-table__button pricing-table__button--success"
+                    >
+                      попробовать
+                    </a>
+                  </div>
+                </div>
+                <div className="pricing-table__item">
+                  <div className="pricing-table__action">
+                    <a 
+                      href="/prices/try_biz.php" 
+                      className="pricing-table__button pricing-table__button--success"
+                    >
+                      попробовать
+                    </a>
+                  </div>
+                </div>
+                <div className="pricing-table__item">
+                  <div className="pricing-table__action">
+                    <a 
+                      href="/prices/try_biz.php" 
+                      className="pricing-table__button pricing-table__button--success"
+                    >
+                      попробовать
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div> */}
+          </div>
+          </div>
+        </div>
+
+
+      
             <div className="box-version__demo">
               <div className="box-version__demo-content">
                 <h3 className="box-version__demo-title">Протестируйте перед покупкой</h3>
@@ -420,7 +664,7 @@ export default function Bitrix24({setBodyScroll}) {
             </div>
             <button        onClick={() => {
               setModal(true);
-              setIsScrollDisabled(true);
+              setBodyScroll(true);
             }} className="role__button flare-button">
               получить бесплатную консультацию
             </button>
@@ -685,7 +929,7 @@ export default function Bitrix24({setBodyScroll}) {
           </div>
           <button        onClick={() => {
               setModal(true);
-              setIsScrollDisabled(true);
+              setBodyScroll(true);
             }} className="role__button service-button flare-button">
             Получить консультацию
           </button>
@@ -745,7 +989,7 @@ export default function Bitrix24({setBodyScroll}) {
           </div>
           <button        onClick={() => {
               setModal(true);
-              setIsScrollDisabled(true);
+              setBodyScroll(true);
             }} className="role__button service-button flare-button">
             Бесплатная консультация
           </button>

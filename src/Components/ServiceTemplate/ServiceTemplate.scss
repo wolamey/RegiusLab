@@ -1317,7 +1317,292 @@ background: red;
           font-size: 14px;
           opacity: 0.9;
         }
+ .box-version__pricing {
+          margin: 80px 0;
+        }
 
+        .pricing-table {
+          background: rgba(0, 0, 0, 0.3);
+          border-radius: 20px;
+          border: 1px solid rgba(175, 123, 32, 0.3);
+          overflow: hidden;
+          margin-top: 40px;
+        }
+
+        .pricing-table__row {
+          display: flex;
+          border-bottom: 1px solid rgba(175, 123, 32, 0.2);
+        }
+
+        .pricing-table__row:last-child {
+          border-bottom: none;
+        }
+
+        .pricing-table__row--header {
+          background: rgba(175, 123, 32, 0.1);
+        }
+
+        .pricing-table__sidebar {
+          flex: 0 0 300px;
+          padding: 30px;
+          border-right: 1px solid rgba(175, 123, 32, 0.2);
+          background: rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-table__body {
+          flex: 1;
+          display: flex;
+        }
+
+        .pricing-table__item {
+          flex: 1;
+          padding: 30px 20px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          border-right: 1px solid rgba(175, 123, 32, 0.1);
+        }
+
+        .pricing-table__item:last-child {
+          border-right: none;
+        }
+
+        .pricing-table__title {
+          color: var(--Yelow, #af7b20);
+          font-family: 'Montserrat', sans-serif;
+          font-size: 20px;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+
+        .pricing-table__sidebar-title {
+          color: var(--White, #fff);
+          font-family: 'Montserrat', sans-serif;
+          font-size: 18px;
+          font-weight: 600;
+          margin-bottom: 8px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .pricing-table__icon {
+          font-size: 20px;
+        }
+
+        .pricing-table__sub-description {
+          color: var(--White, #fff);
+          font-family: 'Montserrat', sans-serif;
+          font-size: 14px;
+          opacity: 0.7;
+        }
+
+        .pricing-table__users {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .pricing-table__users-value {
+          color: var(--White, #fff);
+          font-family: 'Montserrat', sans-serif;
+          font-size: 24px;
+          font-weight: 600;
+        }
+
+        .pricing-table__users-selector {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .pricing-table__users-count {
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(175, 123, 32, 0.3);
+          color: var(--White, #fff);
+          padding: 8px 16px;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 14px;
+        }
+
+        .pricing-table__users-count:hover {
+          border-color: var(--Yelow, #af7b20);
+          background: rgba(175, 123, 32, 0.2);
+        }
+
+        .pricing-table__users-count.active {
+          background: var(--Yelow, #af7b20);
+          color: #000;
+          font-weight: 600;
+          border-color: var(--Yelow, #af7b20);
+        }
+
+        .pricing-table__users-description {
+          margin-top: 10px;
+        }
+
+        .pricing-table__users-link {
+          color: var(--Yelow, #af7b20);
+          font-family: 'Montserrat', sans-serif;
+          font-size: 14px;
+          text-decoration: none;
+          border-bottom: 1px solid transparent;
+          transition: border-color 0.3s ease;
+        }
+
+        .pricing-table__users-link:hover {
+          border-bottom-color: var(--Yelow, #af7b20);
+        }
+
+        .pricing-table__price {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .pricing-table__price-value {
+          color: var(--White, #fff);
+          font-family: 'Montserrat', sans-serif;
+          font-size: 24px;
+          font-weight: 700;
+        }
+
+        .pricing-table__price-description {
+          color: var(--White, #fff);
+          font-family: 'Montserrat', sans-serif;
+          font-size: 14px;
+          opacity: 0.8;
+        }
+
+        .pricing-table__features {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          align-items: flex-start;
+        }
+
+        .pricing-table__feature {
+          color: var(--White, #fff);
+          font-family: 'Montserrat', sans-serif;
+          font-size: 14px;
+          padding: 4px 8px;
+          border-radius: 4px;
+          background: rgba(255, 255, 255, 0.05);
+          opacity: 0.6;
+        }
+
+        .pricing-table__feature.success {
+          opacity: 1;
+          color: var(--Yelow, #af7b20);
+          background: rgba(175, 123, 32, 0.1);
+        }
+
+        .pricing-table__actions {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .pricing-table__action {
+          display: flex;
+          justify-content: center;
+        }
+
+        .pricing-table__button {
+          display: inline-block;
+          padding: 12px 24px;
+          border-radius: 8px;
+          text-decoration: none;
+          font-family: 'Montserrat', sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          text-align: center;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+        }
+
+        .pricing-table__button--primary {
+          background: var(--Yelow, #af7b20);
+          color: #000;
+        }
+
+        .pricing-table__button--primary:hover {
+          background: transparent;
+          color: var(--Yelow, #af7b20);
+          border-color: var(--Yelow, #af7b20);
+        }
+
+        .pricing-table__button--secondary {
+          background: transparent;
+          color: var(--Yelow, #af7b20);
+          border-color: var(--Yelow, #af7b20);
+        }
+
+        .pricing-table__button--secondary:hover {
+          background: var(--Yelow, #af7b20);
+          color: #000;
+        }
+
+        .pricing-table__button--success {
+          background: rgba(175, 123, 32, 0.2);
+          color: var(--Yelow, #af7b20);
+          border-color: var(--Yelow, #af7b20);
+        }
+
+        .pricing-table__button--success:hover {
+          background: var(--Yelow, #af7b20);
+          color: #000;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+          .pricing-table__sidebar {
+            flex: 0 0 250px;
+            padding: 20px;
+          }
+          
+          .pricing-table__item {
+            padding: 20px 15px;
+          }
+        }
+
+        // @media (max-width: 768px) {
+        //   .pricing-table__row {
+        //     flex-direction: column;
+        //   }
+          
+        //   .pricing-table__sidebar {
+        //     flex: none;
+        //     border-right: none;
+        //     border-bottom: 1px solid rgba(175, 123, 32, 0.2);
+        //   }
+          
+        //   .pricing-table__body {
+        //     flex-direction: column;
+        //   }
+          
+        //   .pricing-table__item {
+        //     border-right: none;
+        //     border-bottom: 1px solid rgba(175, 123, 32, 0.1);
+        //   }
+          
+        //   .pricing-table__item:last-child {
+        //     border-bottom: none;
+        //   }
+          
+        //   .pricing-table__users-selector {
+        //     flex-wrap: nowrap;
+        //     overflow-x: auto;
+        //     justify-content: flex-start;
+        //     padding-bottom: 10px;
+        //   }
+        // }
         /* Адаптивность */
         @media (max-width: 768px) {
           .bitrix-weightless__video-grid {
