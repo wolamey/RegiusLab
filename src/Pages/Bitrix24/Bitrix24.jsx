@@ -113,7 +113,10 @@ export default function Bitrix24({setBodyScroll}) {
                   Надежная защита данных
                 </div>
               </div>
-              <button className="service__main-button role__button flare-button">
+              <button    onClick={() => {
+              setModal(true);
+              setBodyScroll(true);
+            }}  className="service__main-button role__button flare-button">
                 Связаться
               </button>
             </div>
