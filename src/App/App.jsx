@@ -29,6 +29,7 @@ import Bitrix24 from "../Pages/Bitrix24/Bitrix24";
 import ChatGPT from "../Pages/ChatGPT/ChatGPT";
 import CyberSecurity from "../Pages/CyberSecurity/CyberSecurity";
 import { useCookies } from "react-cookie";
+import Vacancies from "../Pages/Vacancies";
 function App() {
   const [bodyScroll, setBodyScroll] = useState(true);
   useEffect(() => {
@@ -61,7 +62,7 @@ function App() {
         <Header bodyScroll={bodyScroll} setBodyScroll={setBodyScroll} />
 
         <Routes>
-          <Route path="/" element={<Home serviceDb={serviceDb} />} />
+          <Route path="/" element={<Home serviceDb={serviceDb} />} /> 
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/cookie-settings" element={<CookieSettings />} />
@@ -73,6 +74,7 @@ function App() {
           <Route path="/sites-dev" element={<SitesDev />} />
           <Route path="/b24" element={<Bitrix24  setBodyScroll={setBodyScroll}/>} />
           <Route path="/cybersecurity" element={<CyberSecurity />} />
+          <Route path="/vacancies" element={<Vacancies/>} />
          
           {/*  <Route path="/chat-Rgpt" element={<ChatGPT />} /> */}
           

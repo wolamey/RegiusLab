@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@marsidev/react-turnstile": "^1.0.2",
     "@yandex/smart-captcha": "2.6.0",
     "animate.css": "^4.1.1",
