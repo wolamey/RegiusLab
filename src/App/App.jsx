@@ -29,7 +29,7 @@ import Bitrix24 from "../Pages/Bitrix24/Bitrix24";
 import ChatGPT from "../Pages/ChatGPT/ChatGPT";
 import CyberSecurity from "../Pages/CyberSecurity/CyberSecurity";
 import { useCookies } from "react-cookie";
-import Vacancies from "../Pages/Vacancies";
+import Vacancies from "../Pages/Vacancies/index";
 function App() {
   const [bodyScroll, setBodyScroll] = useState(true);
   useEffect(() => {
@@ -78,13 +78,11 @@ function App() {
          
           {/*  <Route path="/chat-Rgpt" element={<ChatGPT />} /> */}
           
-          <Route path="/noPage" element={<NoPage />} />
+          <Route path="*" element={<NoPage />} />
 
           {/* <Route path="/game" element={<Game />} />
           <Route path="/thanks" element={<Thanks />} />
           <Route path="/questions" element={<Questions />} /> */}
-
-          <Route path="/*" element={<Navigate to="/" />} />
         </Routes>
 
         <Footer />
