@@ -85,7 +85,7 @@ export default function Header({ bodyScroll, setBodyScroll }) {
             </div>
             <div className="header-mobile__item">
               <a
-                href="/Vacancies"
+                href="/vacancies"
                 onClick={() => setBurgerStatus(false)}
                 className="header-mobile__link"
               >

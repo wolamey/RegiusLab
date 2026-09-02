@@ -1,6 +1,6 @@
 // Vacancies.js
 import React, { useState, useRef, useEffect } from "react";
-import "./Vacancies.scss";
+import "./index.scss";
 
 // Генерация случайной капчи
 const generateCaptcha = () => {
