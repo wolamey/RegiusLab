@@ -57,9 +57,8 @@ export default function Home() {
     };
 
     try {
-      const response = await fetch("https://b24-lead.regiuslab.by", {
+      const response = await fetch("/api/leads", {
         method: "POST",
-        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
@@ -68,13 +67,12 @@ export default function Home() {
 
       // console.log(JSON.stringify(data));
 
-      setThanks(true);
-
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
 
-      const result = await response.json();
+      setThanks(true);
+      await response.json();
       // console.log("Success:", result);
     } catch (error) {
       console.error("Error:", error);
