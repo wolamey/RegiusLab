@@ -34,9 +34,8 @@ export default function ServiceForm({
     };
 
     try {
-      const response = await fetch("https://b24-lead.regiuslab.by", {
+      const response = await fetch("/api/leads", {
         method: "POST",
-        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
@@ -45,13 +44,12 @@ export default function ServiceForm({
 
       // console.log(JSON.stringify(data));
 
-      setThanks(true);
-console.log(response)
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
 
-      const result = await response.json();
+      setThanks(true);
+      await response.json();
       // console.log("Success:", result);
     } catch (error) {
       console.error("Error:", error);

@@ -1,0 +1,28 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: api
+    image: regiuslab-api:latest
+    restart: unless-stopped
+    environment:
+      BITRIX24_WEBHOOK_URL: ${BITRIX24_WEBHOOK_URL:?Set BITRIX24_WEBHOOK_URL before deployment}
+
+  regiuslab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: regiuslab:latest
+    container_name: regiuslab
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "3005:80"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--spider", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3

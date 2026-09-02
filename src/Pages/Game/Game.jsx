@@ -23,14 +23,17 @@ export default function Game() {
     };
 
     try {
-      const response = await fetch("https://b24-lead.regiuslab.by", {
+      const response = await fetch("/api/leads", {
         method: "POST",
-        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
       setCookie("is_overed_game", true, {
         path: "/",
@@ -38,8 +41,7 @@ export default function Game() {
       });
       navigate("/thanks");
 
-      const result = await response.json();
-      console.log("Success:", result);
+      await response.json();
     } catch (error) {
       console.error("Error:", error);
     }
