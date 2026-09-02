@@ -90,7 +90,7 @@ function App() {
         <Cookies />
       </div>
     </div>
-  );
+  ); 
 }
 
 export default App;

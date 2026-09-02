@@ -25,10 +25,10 @@ export default function Footer() {
             <img src={soc1} alt="" className="footer__soc-img" />
             <img src={soc12} alt="" className="footer__soc-img-hover" />
           </a>
-          <a href="https://t.me/RegiuslabBot" className="footer__item-soc">
+          {/* <a href="https://t.me/RegiuslabBot" className="footer__item-soc">
             <img src={soc2} alt="" className="footer__soc-img" />
             <img src={soc22} alt="" className="footer__soc-img-hover" />
-          </a>
+          </a> */}
           <a
             href="https://x.com/RegiusLab
 "
@@ -37,10 +37,10 @@ export default function Footer() {
             <img src={soc3} alt="" className="footer__soc-img" />
             <img src={soc32} alt="" className="footer__soc-img-hover" />
           </a>
-          <a href="" className="footer__item-soc">
+          {/* <a href="" className="footer__item-soc">
             <img src={soc4} alt="" className="footer__soc-img" />
             <img src={soc42} alt="" className="footer__soc-img-hover" />
-          </a>
+          </a> */}
         </div>
 
         <a
