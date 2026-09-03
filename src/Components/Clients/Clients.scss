@@ -1,16 +1,4 @@
-:root {
-  --marquee-width: 100%;
-  //   --marquee-height: 20vh;
-  --marquee-elements-displayed2: 4;
-  --marquee-element-width: calc(
-    var(--marquee-width) / var(--marquee-elements-displayed2)
-  );
-  --marquee-animation-duration: calc(var(--marquee-elements2) * 3s);
-}
-
 .marquee2 {
-  //   width: var(--marquee-width);
-  //   height: var(--marquee-height);
   padding: 14px;
   margin: 70px auto 150px auto;
   color: #eee;
@@ -39,32 +27,16 @@
   background: linear-gradient(to left, #000000 0%, transparent 100%);
 }
 
-.fab2 {
-  max-height: 110px;
-}
-
-.clients_title{
-    margin: 80px auto 30px auto;
-    width: 90%;
-
-}
 .marquee-content2 {
-    gap: 30px;
-  list-style: none;
-  height: 100%;
   display: flex;
-  animation: scrolling var(--marquee-animation-duration) linear infinite;
-}
-
-@keyframes scrolling {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(
-      calc(-1 * var(--marquee-element-width) * var(--marquee-elements2))
-    );
-  }
+  gap: 70px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+  transition: opacity 0.2s ease; // плавное появление после замера ширины
 }
 
 .marquee-content2 li {
@@ -72,9 +44,20 @@
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  width: var(--marquee-element-width);
-  max-height: 100%;
 }
+
+.fab2 {
+  max-height: 110px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.clients_title {
+  margin: 80px auto 30px auto;
+  width: 90%;
+}
+
 @media (max-width: 1700px) {
   .fab2 {
     max-width: 280px;
@@ -84,19 +67,20 @@
     margin: 30px 0 150px 0;
   }
 }
-@media (max-width: 1200px) {
-    .fab2 {
-        max-width: 200px;
-      }
 
+@media (max-width: 1200px) {
+  .fab2 {
+    max-width: 200px;
+  }
 }
+
 @media (max-width: 768px) {
-    .clients_title{
-        margin: 10px auto 30px auto;
-    }
-    .marquee2{
-        margin: 30px 0 70px 0;
-    }
+  .clients_title {
+    margin: 10px auto 30px auto;
+  }
+  .marquee2 {
+    margin: 30px 0 70px 0;
+  }
   .fab2 {
     max-width: 100px;
   }
@@ -105,12 +89,6 @@
 @media (max-width: 600px) {
   html {
     font-size: 12px;
-  }
-
-  :root {
-    --marquee-width: 100vw;
-    --marquee-height: 16vh;
-    // --marquee-elements-displayed2: ;
   }
 
   .marquee2:before,

@@ -22,6 +22,7 @@ import bro from "../../assets/bro.png";
 import FAQ from "../../Components/FAQ/FAQ";
 import SwiperTestimonails from "../../Components/SwiperTestimonails/SwiperTestimonails";
 import Clients from "../../Components/Clients/Clients";
+import CertificatesSlider from "../../Components/CertificatesSlider";
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -103,7 +104,7 @@ export default function Home() {
           </a>
           <a href="#services" className="main__arrow-link">
             <img src={arrowDownMain} className="main__arrow" alt="" />
-          </a>
+          </a> 
         </div>
       </div>
 
@@ -239,7 +240,8 @@ export default function Home() {
 
       <p className="title clients_title services__title">Партнеры и Клиенты</p>
       <Clients />
-
+     
+      <CertificatesSlider />
       <FAQ />
     </div>
   );
