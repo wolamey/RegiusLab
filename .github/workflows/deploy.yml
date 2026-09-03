@@ -27,6 +27,17 @@ jobs:
         with:
           lfs: true
 
+      - name: Pull Git LFS files
+        run: |
+          git lfs pull
+          git lfs checkout
+
+      - name: Verify PDF
+        run: |
+          ls -lh public/RegiusLab_Creds.pdf
+          file public/RegiusLab_Creds.pdf
+          sha256sum public/RegiusLab_Creds.pdf
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -58,6 +69,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Pull Git LFS files
+        run: |
+          git lfs pull
+          git lfs checkout
+
+      - name: Verify PDF before Docker build
+        run: |
+          echo "=== PDF before docker build ==="
+          ls -lh public/RegiusLab_Creds.pdf
+          file public/RegiusLab_Creds.pdf
+          sha256sum public/RegiusLab_Creds.pdf
+
+          test "$(stat -c '%s' public/RegiusLab_Creds.pdf)" = "3038806"
 
       - name: Build and start container
         env:
