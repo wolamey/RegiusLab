@@ -5,11 +5,15 @@
   background: #0a0a0a;
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 
   &__container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
   }
 
   &__title {
@@ -30,87 +34,49 @@
     }
   }
 
-  &__slider-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  &__slider {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &__swiper {
+    padding: 20px 0 40px;
+    overflow: visible !important;
+    
+    .swiper-wrapper {
+      align-items: center;
+    }
   }
 
   &__slide {
-    position: absolute;
-    width: 280px;
-    height: 380px;
+    width: 100%;
     cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0.3;
-    transform: scale(0.8);
-    filter: blur(1px);
-    pointer-events: none;
     border-radius: 12px;
     overflow: hidden;
+    transition: all 0.3s ease;
 
-    &-hidden {
-      opacity: 0;
-      transform: scale(0.6);
-      pointer-events: none;
-    }
-
-    &-adjacent {
-      opacity: 0.6;
-      transform: scale(0.85);
-      filter: blur(0.5px);
-      pointer-events: auto;
-
-      &:hover {
-        transform: scale(0.9);
-      }
-    }
-
-    &-active {
-      opacity: 1;
-      transform: scale(1);
-      filter: blur(0);
-      pointer-events: auto;
-      z-index: 10;
-      box-shadow: 0 0 40px rgba(175, 123, 32, 0.3);
-
-      &:hover {
-        transform: scale(1.02);
-        box-shadow: 0 0 60px rgba(175, 123, 32, 0.5);
+    &:hover {
+      transform: translateY(-5px);
+      
+      .certificates__slide-image {
+        transform: scale(1.05);
       }
     }
 
     &-inner {
       position: relative;
       width: 100%;
-      height: 100%;
       border-radius: 12px;
       overflow: hidden;
       background: #1a1a1a;
       border: 1px solid rgba(175, 123, 32, 0.2);
+      aspect-ratio: 3 / 4;
+      max-height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     &-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    &:hover &-image {
-      transform: scale(1.05);
+    
+      object-fit: contain;
+      transition: transform 0.5s ease; border-radius: 12px;
+      margin: auto;
     }
 
     &-overlay {
@@ -120,12 +86,12 @@
       right: 0;
       padding: 20px;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-    &-active &-overlay {
-      transform: translateY(0);
+    &:hover &-overlay {
+      opacity: 1;
     }
 
     &-title {
@@ -145,6 +111,14 @@
       display: block;
       text-align: center;
     }
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
   }
 
   &__arrow {
@@ -167,22 +141,28 @@
       transform: scale(1.1);
     }
 
-    img {
-      width: 20px;
-      height: 20px;
-      filter: brightness(0) invert(1);
+    svg {
+      width: 24px;
+      height: 24px;
+      
+      path {
+        stroke: #ffffff;
+        transition: stroke 0.3s ease;
+      }
     }
 
-    &-prev img {
-      transform: rotate(90deg);
-    }
-
-    &-next img {
-      transform: rotate(-90deg);
+    &:hover svg path {
+      stroke: #AF7B20;
     }
 
     @media (max-width: 768px) {
-      display: none;
+      width: 40px;
+      height: 40px;
+      
+      svg {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 
@@ -190,7 +170,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 30px;
+    flex: 1;
   }
 
   &__dot {
@@ -214,89 +194,25 @@
       transform: scale(1.1);
     }
   }
-}
 
-// Мобильная версия - сетка
-.certificates-mobile {
-  padding: 40px 0 60px;
-  background: #0a0a0a;
+  // Мобильная версия
+  &--mobile {
+    padding: 40px 0 60px;
+    min-height: 100vh;
 
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 16px;
-  }
-
-  &__item {
-    cursor: pointer;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #1a1a1a;
-    border: 1px solid rgba(175, 123, 32, 0.15);
-    transition: all 0.3s ease;
-
-    &:active {
-      transform: scale(0.97);
+    .certificates__slide {
+      max-width: 400px;
+      margin: 0 auto;
+      
+      &-inner {
+        aspect-ratio: 3 / 4;
+        max-height: 600px;
+      }
     }
-  }
 
-  &__image-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 141%; // Соотношение для PDF
-    overflow: hidden;
-  }
-
-  &__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  &__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  &__item:active &__overlay {
-    opacity: 1;
-  }
-
-  &__view-text {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 8px 16px;
-    border: 1px solid #AF7B20;
-    border-radius: 4px;
-  }
-
-  &__item-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 12px;
-    color: #ffffff;
-    padding: 10px 12px;
-    text-align: center;
-    line-height: 1.3;
+    .certificates__swiper {
+      padding: 10px 0 30px;
+    }
   }
 }
 
@@ -361,7 +277,6 @@
   }
 }
 
-// Анимации
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -382,32 +297,29 @@
   }
 }
 
+// Стили для Swiper
+.swiper {
+  overflow: visible !important;
+}
+
+.swiper-slide {
+  height: auto !important;
+}
+
 // Адаптация для планшетов
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 769px) {
   .certificates {
     &__slide {
-      width: 220px;
-      height: 300px;
-    }
-
-    &__slider {
-      height: 400px;
+      &-inner {
+        max-height: 400px;
+      }
     }
   }
 }
 
 @media (max-width: 768px) {
-  .certificates {
-    display: none;
-  }
-
-  .certificates-mobile {
-    display: block;
-  }
-}
-
-@media (min-width: 769px) {
-  .certificates-mobile {
+  // Убираем десктопную версию
+  .certificates:not(.certificates--mobile) {
     display: none;
   }
 }

@@ -1,7 +1,11 @@
 // src/Components/CertificatesSlider/CertificatesSlider.jsx
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, A11y } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import './CertificatesSlider.scss';
-import arrowDownImg from '../assets/arrow-down-right.png';
 
 // Импортируйте ваши PDF файлы
 import cert1 from '../assets/cert1.pdf';
@@ -20,42 +24,40 @@ import certPreview5 from '../assets/cert-preview5.png';
 const certificates = [
   {
     id: 1,
-    title: 'Сертификат качества 2024',
+    title: 'Сертификат соответствия',
     file: cert1,
     preview: certPreview1,
   },
   {
     id: 2,
-    title: 'Сертификат соответствия',
+    title: 'Сертификат о присвоении компетенции "Коробочная версия"',
     file: cert2,
     preview: certPreview2,
   },
   {
     id: 3,
-    title: 'Лицензия на деятельность',
+    title: 'Сертификат "Золотой партнер"',
     file: cert3,
     preview: certPreview3,
   },
   {
     id: 4,
-    title: 'Сертификат партнера',
+    title: 'Сертификат о присвоении компетенции "Автоматизация"',
     file: cert4,
     preview: certPreview4,
   },
-    {
+  {
     id: 5,
-    title: 'Сертификат партнера',
+    title: 'Сертификат о присвоении компетенции "CRM"',
     file: cert5,
     preview: certPreview5,
   },
 ];
 
 export default function CertificatesSlider() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPdf, setSelectedPdf] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const sliderRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -64,16 +66,6 @@ export default function CertificatesSlider() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  const totalSlides = certificates.length;
-
-  const goToPrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
-  };
-
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-  };
 
   const openPdfModal = (pdfFile) => {
     setSelectedPdf(pdfFile);
@@ -87,7 +79,6 @@ export default function CertificatesSlider() {
     document.body.style.overflow = 'auto';
   };
 
-  // Закрытие по Escape
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape' && isModalOpen) {
@@ -98,34 +89,88 @@ export default function CertificatesSlider() {
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isModalOpen]);
 
-  // Для мобильной версии показываем все сертификаты в виде сетки
+  // Мобильная версия - слайдер по 1 элементу
   if (isMobile) {
     return (
-      <div className="certificates-mobile">
-        <p className="certificates__title">Наши сертификаты</p>
-        <div className="certificates-mobile__grid">
-          {certificates.map((cert) => (
-            <div
-              key={cert.id}
-              className="certificates-mobile__item"
-              onClick={() => openPdfModal(cert.file)}
-            >
-              <div className="certificates-mobile__image-wrapper">
-                <img
-                  src={cert.preview}
-                  alt={cert.title}
-                  className="certificates-mobile__image"
-                />
-                <div className="certificates-mobile__overlay">
-                  <p className="certificates-mobile__view-text">Просмотреть</p>
+      <div className="certificates certificates--mobile">
+        <div className="certificates__container">
+          <p className="certificates__title">Наши сертификаты</p>
+
+          <Swiper
+            modules={[Navigation, Pagination, A11y]}
+            slidesPerView={1}
+            spaceBetween={20}
+            navigation={{
+              prevEl: '.certificates__arrow-prev',
+              nextEl: '.certificates__arrow-next',
+            }}
+            pagination={{
+              el: '.certificates__dots',
+              clickable: true,
+              bulletClass: 'certificates__dot',
+              bulletActiveClass: 'certificates__dot-active',
+            }}
+            loop={true}
+            speed={500}
+            className="certificates__swiper"
+          >
+            {certificates.map((cert) => (
+              <SwiperSlide key={cert.id}>
+                <div
+                  className="certificates__slide"
+                  onClick={() => openPdfModal(cert.file)}
+                >
+                  <div className="certificates__slide-inner">
+                    <img
+                      src={cert.preview}
+                      alt={cert.title}
+                      className="certificates__slide-image"
+                    />
+                    <div className="certificates__slide-overlay">
+                      <p className="certificates__slide-title">{cert.title}</p>
+                      <span className="certificates__slide-view">Нажмите для просмотра</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <p className="certificates-mobile__item-title">{cert.title}</p>
-            </div>
-          ))}
+              </SwiperSlide>
+            ))}
+               {certificates.map((cert) => (
+              <SwiperSlide key={cert.id}>
+                <div
+                  className="certificates__slide"
+                  onClick={() => openPdfModal(cert.file)}
+                >
+                  <div className="certificates__slide-inner">
+                    <img
+                      src={cert.preview}
+                      alt={cert.title}
+                      className="certificates__slide-image"
+                    />
+                    <div className="certificates__slide-overlay">
+                      <p className="certificates__slide-title">{cert.title}</p>
+                      <span className="certificates__slide-view">Нажмите для просмотра</span>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <div className="certificates__controls">
+            <button className="certificates__arrow certificates__arrow-prev">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <div className="certificates__dots"></div>
+            <button className="certificates__arrow certificates__arrow-next">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
         </div>
 
-        {/* Модальное окно для PDF */}
         {isModalOpen && (
           <div className="certificates-modal" onClick={closePdfModal}>
             <div
@@ -150,67 +195,88 @@ export default function CertificatesSlider() {
     );
   }
 
-  // Десктопная версия - слайдер
+  // Десктопная версия - 3 слайда
   return (
     <div className="certificates">
       <div className="certificates__container">
         <p className="certificates__title">Наши сертификаты</p>
 
-        <div className="certificates__slider-wrapper">
-          <button className="certificates__arrow certificates__arrow-prev" onClick={goToPrev}>
-            <img src={arrowDownImg} alt="Назад" />
-          </button>
-
-          <div className="certificates__slider" ref={sliderRef}>
-            {certificates.map((cert, index) => {
-              let position = index - currentIndex;
-              if (position < -1) position += totalSlides;
-              if (position > 1) position -= totalSlides;
-
-              let className = 'certificates__slide';
-              if (position === 0) className += ' certificates__slide-active';
-              else if (position === -1 || position === 1) className += ' certificates__slide-adjacent';
-              else className += ' certificates__slide-hidden';
-
-              return (
-                <div
-                  key={cert.id}
-                  className={className}
-                  onClick={() => openPdfModal(cert.file)}
-                >
-                  <div className="certificates__slide-inner">
-                    <img
-                      src={cert.preview}
-                      alt={cert.title}
-                      className="certificates__slide-image"
-                    />
-                    <div className="certificates__slide-overlay">
-                      <p className="certificates__slide-title">{cert.title}</p>
-                      <span className="certificates__slide-view">Нажмите для просмотра</span>
-                    </div>
+        <Swiper
+          modules={[Navigation, Pagination, A11y]}
+          slidesPerView={3}
+          spaceBetween={30}
+          centeredSlides={true}
+          navigation={{
+            prevEl: '.certificates__arrow-prev',
+            nextEl: '.certificates__arrow-next',
+          }}
+          pagination={{
+            el: '.certificates__dots',
+            clickable: true,
+            bulletClass: 'certificates__dot',
+            bulletActiveClass: 'certificates__dot-active',
+          }}
+          loop={true}
+          speed={500}
+          className="certificates__swiper"
+        >
+          {certificates.map((cert) => (
+            <SwiperSlide key={cert.id}>
+              <div
+                className="certificates__slide"
+                onClick={() => openPdfModal(cert.file)}
+              >
+                <div className="certificates__slide-inner">
+                  <img
+                    src={cert.preview}
+                    alt={cert.title}
+                    className="certificates__slide-image"
+                  />
+                  <div className="certificates__slide-overlay">
+                    <p className="certificates__slide-title">{cert.title}</p>
+                    <span className="certificates__slide-view">Нажмите для просмотра</span>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-
-          <button className="certificates__arrow certificates__arrow-next" onClick={goToNext}>
-            <img src={arrowDownImg} alt="Вперед" />
-          </button>
-        </div>
-
-        <div className="certificates__dots">
-          {certificates.map((_, index) => (
-            <button
-              key={index}
-              className={`certificates__dot ${index === currentIndex ? 'certificates__dot-active' : ''}`}
-              onClick={() => setCurrentIndex(index)}
-            />
+              </div>
+            </SwiperSlide>
           ))}
+                 {certificates.map((cert) => (
+            <SwiperSlide key={cert.id}>
+              <div
+                className="certificates__slide"
+                onClick={() => openPdfModal(cert.file)}
+              >
+                <div className="certificates__slide-inner">
+                  <img
+                    src={cert.preview}
+                    alt={cert.title}
+                    className="certificates__slide-image"
+                  />
+                  <div className="certificates__slide-overlay">
+                    <p className="certificates__slide-title">{cert.title}</p>
+                    <span className="certificates__slide-view">Нажмите для просмотра</span>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <div className="certificates__controls">
+          <button className="certificates__arrow certificates__arrow-prev">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          <div className="certificates__dots"></div>
+          <button className="certificates__arrow certificates__arrow-next">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
         </div>
       </div>
 
-      {/* Модальное окно для PDF */}
       {isModalOpen && (
         <div className="certificates-modal" onClick={closePdfModal}>
           <div
