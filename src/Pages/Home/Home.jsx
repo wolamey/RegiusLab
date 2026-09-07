@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./Home.scss";
-import mainBack from "../../assets/main-back.png";
 import arrowDownImg from "../../assets/arrow-down-right.png";
 import arrowBlack from "../../assets/arrow-down-right-black.png";
 import "../../style/fonts/fonts.scss";
@@ -23,6 +22,13 @@ import FAQ from "../../Components/FAQ/FAQ";
 import SwiperTestimonails from "../../Components/SwiperTestimonails/SwiperTestimonails";
 import Clients from "../../Components/Clients/Clients";
 import CertificatesSlider from "../../Components/CertificatesSlider";
+
+// Импорты видео
+import videoMaster from "../../assets/regiuslab-cube-assembly-master.mp4";
+import videoMobile from "../../assets/regiuslab-cube-assembly-mobile.mp4";
+import videoDefault from "../../assets/regiuslab-cube-assembly.mp4";
+import videoWebm from "../../assets/regiuslab-cube-assembly.webm";
+import videoCycle from "../../assets/regiuslab-cube-cycle.mp4";
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -92,7 +98,24 @@ export default function Home() {
   return (
     <div>
       <div className="main">
-        <img src={mainBack} className="main__back" alt="" />
+        {/* Заменяем img на видео */}
+        <video
+          className="main__back"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={videoDefault} // fallback-изображение, если видео не загрузится
+        >
+          {/* Несколько источников для кросс-браузерности */}
+          <source src={videoWebm} type="video/webm" />
+          <source src={videoMaster} type="video/mp4" />
+          <source src={videoDefault} type="video/mp4" />
+          <source src={videoMobile} type="video/mp4" />
+          <source src={videoCycle} type="video/mp4" />
+          {/* fallback текст, если браузер не поддерживает видео */}
+          Ваш браузер не поддерживает видео.
+        </video>
 
         <div className="main__content">
           <p className="main__company-name">REGIUSLAB</p>

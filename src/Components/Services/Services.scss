@@ -1,6 +1,8 @@
 .services {
   width: 90%;
   margin: auto;
+  position: relative;
+  z-index: 1;
 }
 .services__title {
   font-family: "Montserrat semi bold", sans-serif;

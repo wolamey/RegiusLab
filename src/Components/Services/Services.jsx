@@ -111,7 +111,6 @@ export default function Services() {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
   return (
-    <div>
       <div id="services" className="services">
         <p className="services__title">Индивидуальная разработка</p>
         <div className="services__bullits">
@@ -198,6 +197,5 @@ export default function Services() {
           ))}
         </div>
       </div>
-    </div>
   );
 }
