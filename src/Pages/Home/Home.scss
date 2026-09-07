@@ -671,6 +671,9 @@
   }
 }
 @media (max-width: 768px) {
+  .main__content{
+    padding: 0 20px;
+  }
   .main__company-name {
     font-size: 50px;
   }
