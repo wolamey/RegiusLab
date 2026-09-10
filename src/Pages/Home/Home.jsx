@@ -29,6 +29,7 @@ import videoMobile from "../../assets/regiuslab-cube-assembly-mobile.mp4";
 import videoDefault from "../../assets/regiuslab-cube-assembly.mp4";
 import videoWebm from "../../assets/regiuslab-cube-assembly.webm";
 import videoCycle from "../../assets/regiuslab-cube-cycle.mp4";
+import ReviewsSlider from "../../Components/ReviewsSlider";
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -132,7 +133,6 @@ export default function Home() {
       </div>
 
       <Services />
-
       <Marquee />
 
       <div id="about" className="about">
@@ -265,6 +265,9 @@ export default function Home() {
       <Clients />
      
       <CertificatesSlider />
+
+<ReviewsSlider/>
+
       <FAQ />
     </div>
   );
