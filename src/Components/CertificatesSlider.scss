@@ -37,7 +37,7 @@
   &__swiper {
     padding: 20px 0 40px;
     overflow: visible !important;
-    
+
     .swiper-wrapper {
       align-items: center;
     }
@@ -52,9 +52,17 @@
 
     &:hover {
       transform: translateY(-5px);
-      
+
       .certificates__slide-image {
-        transform: scale(1.05);
+        transform: scale(1.08);
+        filter: blur(14px) brightness(0.5);
+      }
+
+      .certificates__slide-btn {
+        background: #AF7B20;
+        border-color: #AF7B20;
+        color: #0a0a0a;
+        transform: translateY(0);
       }
     }
 
@@ -73,43 +81,67 @@
     }
 
     &-image {
-    
-      object-fit: contain;
-      transition: transform 0.5s ease; border-radius: 12px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
       margin: auto;
+      transition: transform 0.5s ease, filter 0.4s ease;
+
+      // Превью всегда размыто, пока не откроют
+      &--blurred {
+        filter: blur(12px) brightness(0.55);
+        transform: scale(1.1);
+      }
     }
 
     &-overlay {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 20px;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    &:hover &-overlay {
-      opacity: 1;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 24px;
+      text-align: center;
+      // лёгкая вуаль поверх блюра, чтобы текст читался лучше
+   
+      transition: background 0.3s ease;
     }
 
     &-title {
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 16px;
+      line-height: 1.4;
       color: #ffffff;
-      margin-bottom: 4px;
-      text-align: center;
+      margin: 0;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+      max-width: 90%;
     }
 
-    &-view {
+    &-btn {
       font-family: 'Montserrat', sans-serif;
-      font-weight: 400;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.6);
-      display: block;
-      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #AF7B20;
+      background: rgba(10, 10, 10, 0.6);
+      border: 1px solid #AF7B20;
+      border-radius: 999px;
+      padding: 12px 28px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+
+      &:hover {
+        background: #AF7B20;
+        color: #0a0a0a;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(175, 123, 32, 0.4);
+      }
     }
   }
 
@@ -144,7 +176,7 @@
     svg {
       width: 24px;
       height: 24px;
-      
+
       path {
         stroke: #ffffff;
         transition: stroke 0.3s ease;
@@ -158,7 +190,7 @@
     @media (max-width: 768px) {
       width: 40px;
       height: 40px;
-      
+
       svg {
         width: 20px;
         height: 20px;
@@ -203,10 +235,14 @@
     .certificates__slide {
       max-width: 400px;
       margin: 0 auto;
-      
+
       &-inner {
         aspect-ratio: 3 / 4;
         max-height: 600px;
+      }
+
+      &-title {
+        font-size: 15px;
       }
     }
 
@@ -278,12 +314,8 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
@@ -322,4 +354,199 @@
   .certificates:not(.certificates--mobile) {
     display: none;
   }
+}
+
+.certificates__slide {
+  perspective: 1400px;
+  cursor: pointer;
+  border-radius: 12px;
+
+  &-inner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    max-height: 500px;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
+    border-radius: 12px;
+  }
+
+  &.is-flipping .certificates__slide-inner {
+    transform: rotateY(180deg);
+  }
+
+  &-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0a0a0a;
+    border: 1px solid rgba(175, 123, 32, 0.25);
+
+    &--front {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #161616, #050505);
+    }
+  }
+
+  &-cover-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 14px;
+    padding: 24px;
+    text-align: center;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.35) 45%,
+      rgba(0, 0, 0, 0) 70%
+    );
+  }
+
+  &-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+    max-width: 90%;
+  }
+
+  &-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #AF7B20;
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid #AF7B20;
+    border-radius: 999px;
+    padding: 10px 26px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+
+    &:hover {
+      background: #AF7B20;
+      color: #0a0a0a;
+      box-shadow: 0 8px 24px rgba(175, 123, 32, 0.5);
+    }
+  }
+
+  &:hover .certificates__medal {
+    animation: medalPulse 1.6s ease-in-out infinite;
+    transform-origin: 150px 150px;
+  }
+
+  &:hover .certificates__particles circle {
+    animation: particleFloat 2.4s ease-in-out infinite;
+  }
+}
+
+/* медаль пульсирует */
+@keyframes medalPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.05); }
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0);    opacity: 0.7; }
+  50%      { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ===== SVG-анимация открытия (обратная сторона) ===== */
+.certificates-open-seal {
+  width: 70%;
+  max-width: 220px;
+  aspect-ratio: 1 / 1;
+
+  svg { width: 100%; height: 100%; }
+}
+
+/* внешнее кольцо раскрывается */
+.seal-ring--outer {
+  transform-origin: 100px 100px;
+  animation: ringExpand 1s ease-in-out infinite;
+}
+
+@keyframes ringExpand {
+  0%   { transform: scale(0.85); opacity: 0; }
+  40%  { opacity: 1; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+
+/* внутреннее кольцо вращается */
+.seal-ring--spin {
+  transform-origin: 100px 100px;
+  animation: ringSpin 3s linear infinite;
+}
+
+@keyframes ringSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* печать мягко дышит */
+.seal-core {
+  transform-origin: 100px 100px;
+  animation: corePulse 1.4s ease-in-out infinite;
+}
+
+@keyframes corePulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+
+/* галочка «прорисовывается» */
+.seal-check {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: drawCheck 1.4s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+
+.certificates-modal {
+  animation: modalFade 0.45s ease;
+
+  &__content {
+    animation: modalZoom 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@keyframes modalFade {
+  from { opacity: 0; backdrop-filter: blur(0); }
+  to   { opacity: 1; backdrop-filter: blur(20px); }
+}
+
+@keyframes modalZoom {
+  0%   { opacity: 0; transform: scale(0.85) rotateY(-15deg); }
+  60%  { opacity: 1; transform: scale(1.02) rotateY(3deg); }
+  100% { transform: scale(1) rotateY(0); }
 }

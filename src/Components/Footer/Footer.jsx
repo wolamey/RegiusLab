@@ -8,7 +8,8 @@ import soc1 from '../../assets/soc1.png';
 import soc2 from '../../assets/soc2.png';
 import soc3 from '../../assets/soc3.png';
 import soc4 from '../../assets/soc4.png';
-
+import inst1 from '../../assets/inst1.png';
+import inst2 from '../../assets/inst2.png';
 export default function Footer() {
   return (
     <div id="footer" className="footer">
@@ -30,12 +31,12 @@ export default function Footer() {
             <img src={soc22} alt="" className="footer__soc-img-hover" />
           </a> */}
           <a
-            href="https://x.com/RegiusLab
+            href="https://www.instagram.com/regiuslab_it/
 "
             className="footer__item-soc"
           >
-            <img src={soc3} alt="" className="footer__soc-img" />
-            <img src={soc32} alt="" className="footer__soc-img-hover" />
+            <img src={inst2} alt="" className="footer__soc-img" />
+            <img src={inst1} alt="" className="footer__soc-img-hover" />
           </a>
           {/* <a href="" className="footer__item-soc">
             <img src={soc4} alt="" className="footer__soc-img" />
@@ -50,12 +51,17 @@ export default function Footer() {
         >
           Тел: +375447980498
         </a>
+           <a
+          href="tel:+375447041787"
+          onClick={() => window.fbq('track', 'Contact')}
+          className="footer__tel"
+        >
+          Тел: +375447041787
+        </a>
         <a href="mailto:sales@regiuslab.by" className="footer__tel">
           sales@regiuslab.by
         </a>
-        <a href="/cookie-settings" className="footer__link">
-          Настройки cookie
-        </a>
+      
       </div>
       <div className="footer__column">
         <p className="footer__info">ООО "РЕГИУСЛАБ"</p>
@@ -71,6 +77,9 @@ export default function Footer() {
         <p className="footer__info">Офис: Тимирязева 65, помещение 202-5</p>
         <a href="/privacy" className="footer__link">
           Политика конфиденциальности
+        </a>
+          <a href="/cookie-settings" className="footer__link">
+          Настройки cookie
         </a>
       </div>
     </div>
