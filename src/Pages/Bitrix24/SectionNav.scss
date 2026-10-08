@@ -1,0 +1,307 @@
+/* ==================== STICKY-НАВИГАЦИЯ (сворачиваемая) ==================== */
+.section-nav {
+  --nav-w-collapsed: 56px;
+  --nav-w-expanded: 260px;
+
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translate(120%, -50%);
+  z-index: 60;
+
+  display: flex;
+  align-items: center;
+  height: 56px;
+
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(20, 14, 2, 0.95), rgba(0, 0, 0, 0.95));
+  border: 1px solid rgba(175, 123, 32, 0.4);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.55),
+    0 0 30px rgba(175, 123, 32, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  width: var(--nav-w-collapsed);
+
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity   0.35s ease,
+    width     0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    height    0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.4s ease;
+
+  &--visible {
+    transform: translate(0, -50%);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* развёрнутое состояние */
+  &.is-open {
+    width: var(--nav-w-expanded);
+    height: auto;
+    min-height: 56px;
+    border-radius: 20px;
+    align-items: stretch;
+
+    .section-nav__mini-dots { opacity: 0; transform: scale(0.6); }
+
+    .section-nav__trigger svg {
+      transform: rotate(135deg);
+      color: #ffd970;
+    }
+
+    .section-nav__panel {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+  }
+}
+
+/* ---------- Trigger (иконка-компас) ---------- */
+.section-nav__trigger {
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease, background 0.3s ease;
+
+  svg {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+    filter: drop-shadow(0 0 6px rgba(175, 123, 32, 0.6));
+  }
+
+  &:hover {
+    color: #ffd970;
+    background: rgba(175, 123, 32, 0.1);
+  }
+}
+
+/* ---------- Мини-точки (когда свёрнуто) ---------- */
+.section-nav__mini-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3px;
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+
+  .section-nav__mini-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(175, 123, 32, 0.35);
+    transition: all 0.3s ease;
+
+    &.is-active {
+      background: #ffd970;
+      box-shadow: 0 0 8px #ffd970;
+      transform: scale(1.4);
+    }
+  }
+}
+
+/* ---------- Выпадающая панель ---------- */
+.section-nav__panel {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px 16px 4px;
+  min-width: 200px;
+  opacity: 0;
+  transform: translateX(-12px);
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-nav__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(175, 123, 32, 0.9);
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(175, 123, 32, 0.2);
+  white-space: nowrap;
+}
+
+.section-nav__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.section-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+
+  &:hover {
+    color: #fff;
+    background: rgba(175, 123, 32, 0.12);
+    transform: translateX(4px);
+  }
+
+  &.is-active {
+    color: #ffd970;
+    background: rgba(175, 123, 32, 0.2);
+    font-weight: 600;
+
+    .section-nav__dot {
+      background: #ffd970;
+      box-shadow: 0 0 12px #ffd970, 0 0 20px rgba(255, 217, 112, 0.5);
+      transform: scale(1.4);
+    }
+  }
+}
+
+.section-nav__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(175, 123, 32, 0.5);
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.section-nav__label {
+  display: inline-block;
+}
+
+/* ==================== АДАПТИВНОСТЬ ==================== */
+@media (max-width: 1200px) {
+  .section-nav {
+    --nav-w-expanded: 230px;
+    right: 12px;
+  }
+
+  .section-nav__title { font-size: 10px; }
+  .section-nav__item  { font-size: 12px; padding: 7px 10px; }
+}
+
+@media (max-width: 768px) {
+  /* На мобильных — прижимаем к правому краю, размеры компактнее */
+  .section-nav {
+    --nav-w-collapsed: 48px;
+    --nav-w-expanded: 220px;
+    right: 10px;
+    height: 48px;
+  }
+
+  .section-nav__trigger { flex: 0 0 48px; width: 48px; height: 48px; }
+  .section-nav__panel   { padding: 12px 14px 12px 2px; }
+  .section-nav__item    { font-size: 12px; }
+}
+
+/* На совсем маленьких экранах лучше вообще скрыть — не мешает контенту */
+@media (max-width: 480px) {
+  .section-nav { display: none; }
+}
+
+/* Уважаем настройки пользователя про анимации */
+@media (prefers-reduced-motion: reduce) {
+  .section-nav,
+  .section-nav__trigger svg,
+  .section-nav__panel,
+  .section-nav__item,
+  .section-nav__dot,
+  .section-nav__mini-dots {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------- Мини-индикаторы (столбик полосок) ---------- */
+.section-nav__mini-bars {
+  position: absolute;
+  top: 50%;
+  right: 6px;                       /* прижимаем к правому краю триггера */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.section-nav__mini-bar {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(175, 123, 32, 0.35);
+  transition:
+    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    width  0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+
+  &.is-active {
+    width: 3px;
+    height: 12px;
+    border-radius: 2px;
+    background: #ffd970;
+    box-shadow: 0 0 8px #ffd970, 0 0 14px rgba(255, 217, 112, 0.55);
+  }
+}
+.section-nav__mini-bars { opacity: 0; transform: translateY(-50%) scaleX(0.4); }
+
+.section-nav__trigger {
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right:0px;              /* ← добавили, чтобы столбик полосок не лип к краю */
+  gap: 4px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease, background 0.3s ease;
+
+  svg {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+    filter: drop-shadow(0 0 6px rgba(175, 123, 32, 0.6));
+  }
+
+  &:hover {
+    color: #ffd970;
+    background: rgba(175, 123, 32, 0.1);
+  }
+}

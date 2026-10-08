@@ -1,0 +1,560 @@
+/* ==================== БЛОК КЕЙСОВ ==================== */
+.bitrix-cases {
+  position: relative;
+  width: 80%;
+  margin: 100px auto;
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.bitrix-cases__glow {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: 900px;
+  height: 900px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(175, 123, 32, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  animation: casesGlowPulse 8s ease-in-out infinite;
+}
+
+@keyframes casesGlowPulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  50%      { opacity: 0.9; transform: translateX(-50%) scale(1.15); }
+}
+
+.bitrix-cases__header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.bitrix-cases__kicker {
+  display: inline-block;
+  padding: 6px 18px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  background: linear-gradient(90deg, rgba(175, 123, 32, 0.2), rgba(255, 217, 112, 0.15));
+  border: 1px solid rgba(175, 123, 32, 0.4);
+  color: #ffd970;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.bitrix-cases__section-title {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 14px;
+  background: linear-gradient(120deg, #ffffff 20%, #ffd970 50%, #af7b20 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bitrix-cases__lead {
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.bitrix-cases__wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==================== КАРТОЧКА КЕЙСА ==================== */
+.bitrix-case {
+  --accent: #af7b20;
+  position: relative;
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(20, 15, 4, 0.9) 0%, rgba(8, 6, 2, 0.95) 100%);
+  border: 1px solid rgba(175, 123, 32, 0.22);
+  overflow: hidden;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.35;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover {
+    border-color: rgba(175, 123, 32, 0.5);
+    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.8), 0 0 40px -10px var(--accent);
+  }
+
+  &.is-open {
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.85), 0 0 60px -15px var(--accent);
+
+    &::before { opacity: 1; }
+  }
+}
+
+/* ---------- HEAD (кликабельная шапка) ---------- */
+.bitrix-case__head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px 32px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(90deg, rgba(175, 123, 32, 0.08) 0%, transparent 100%);
+  }
+}
+
+.bitrix-case__head-left {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex: 1;
+  min-width: 0;
+}
+
+.bitrix-case__icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(175, 123, 32, 0.15), rgba(0, 0, 0, 0.3));
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  font-size: 28px;
+  transition: all 0.4s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 20px;
+    background: radial-gradient(circle, var(--accent), transparent 70%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+    filter: blur(10px);
+  }
+}
+
+.bitrix-case.is-open .bitrix-case__icon,
+.bitrix-case__head:hover .bitrix-case__icon {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px -6px var(--accent);
+
+  &::after { opacity: 0.5; }
+}
+
+.bitrix-case__head-text {
+  min-width: 0;
+}
+
+.bitrix-case__badge {
+  display: inline-block;
+  padding: 3px 12px;
+  margin-bottom: 8px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--accent);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.bitrix-case__title {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0 0 6px;
+}
+
+.bitrix-case__subtitle {
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* ---------- Toggle (шеврон) ---------- */
+.bitrix-case__toggle {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(175, 123, 32, 0.25);
+  color: #ffd970;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+  svg {
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &.is-open {
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+    border-color: var(--accent);
+    transform: rotate(0deg);
+    box-shadow: 0 0 20px -4px var(--accent);
+
+    svg { transform: rotate(180deg); }
+  }
+}
+
+/* ---------- COLLAPSE (аккордеон) ---------- */
+.bitrix-case__collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bitrix-case.is-open .bitrix-case__collapse {
+  grid-template-rows: 1fr;
+}
+
+.bitrix-case__body {
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s, padding 0.5s ease;
+}
+
+.bitrix-case.is-open .bitrix-case__body {
+  padding: 8px 32px 36px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Блоки внутри кейса ---------- */
+.bitrix-case__block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bitrix-case__block-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.bitrix-case__block-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent), 0 0 24px color-mix(in srgb, var(--accent) 50%, transparent);
+  flex-shrink: 0;
+}
+
+.bitrix-case__text {
+  color: rgba(255, 255, 255, 0.82);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.bitrix-case__text--highlight {
+  padding: 16px 22px;
+  border-radius: 12px;
+  border-left: 3px solid var(--accent);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 10%, transparent) 0%, transparent 100%);
+  color: rgba(255, 255, 255, 0.9);
+
+  strong {
+    color: var(--accent);
+    font-weight: 700;
+  }
+}
+
+/* ---------- Solution items ---------- */
+.bitrix-case__solutions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bitrix-case__solution-item {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding: 20px 22px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.35s ease;
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 6%, transparent) 0%, transparent 100%);
+    transform: translateX(4px);
+  }
+}
+
+.bitrix-case__solution-num {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  color: var(--accent);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.bitrix-case__solution-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bitrix-case__solution-title {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ---------- Список ---------- */
+.bitrix-case__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bitrix-case__list li {
+  position: relative;
+  padding-left: 22px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.6;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 9px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  strong {
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+/* ---------- Таблица ---------- */
+.bitrix-case__table-wrap {
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.bitrix-case__table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.bitrix-case__table thead {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 18%, transparent), transparent);
+}
+
+.bitrix-case__table th {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  padding: 15px 20px;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bitrix-case__table td {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  padding: 13px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.25s ease;
+}
+
+.bitrix-case__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.bitrix-case__table tbody tr:hover td {
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+
+.bitrix-case__table-best {
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+/* ---------- Result / CTA ---------- */
+.bitrix-case__result {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border-radius: 16px;
+  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 12%, transparent) 0%, rgba(0, 0, 0, 0.3) 100%);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 25%, transparent), transparent 70%);
+    filter: blur(30px);
+    pointer-events: none;
+    animation: resultGlow 6s ease-in-out infinite;
+  }
+}
+
+@keyframes resultGlow {
+  0%, 100% { opacity: 0.4; transform: translate(0, 0) scale(1); }
+  50%      { opacity: 0.85; transform: translate(-20px, 20px) scale(1.15); }
+}
+
+.bitrix-case__result-icon {
+  color: var(--accent);
+  filter: drop-shadow(0 0 12px var(--accent));
+  animation: resultStar 5s ease-in-out infinite;
+}
+
+@keyframes resultStar {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50%      { transform: rotate(15deg) scale(1.1); }
+}
+
+.bitrix-case__result-text {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15.5px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.bitrix-case__cta {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+}
+
+/* ==================== АДАПТИВНОСТЬ ==================== */
+@media (max-width: 1024px) {
+  .bitrix-cases { width: 90%; padding: 40px 0; }
+  .bitrix-cases__section-title { font-size: 28px; }
+  .bitrix-case__head { padding: 22px 24px; }
+  .bitrix-case__body { padding: 0 24px; }
+  .bitrix-case.is-open .bitrix-case__body { padding: 6px 24px 28px; }
+  .bitrix-case__icon { width: 54px; height: 54px; font-size: 24px; }
+  .bitrix-case__title { font-size: 17px; }
+}
+
+@media (max-width: 768px) {
+  .bitrix-cases__section-title { font-size: 22px; }
+  .bitrix-cases__lead { font-size: 14px; }
+  .bitrix-case__head { padding: 18px 18px; gap: 12px; }
+  .bitrix-case__head-left { gap: 14px; }
+  .bitrix-case__icon { width: 46px; height: 46px; font-size: 20px; border-radius: 14px; }
+  .bitrix-case__title { font-size: 15px; }
+  .bitrix-case__subtitle { font-size: 11.5px; }
+  .bitrix-case__toggle { width: 36px; height: 36px; }
+  .bitrix-case__body { padding: 0 18px; gap: 24px; }
+  .bitrix-case.is-open .bitrix-case__body { padding: 4px 18px 22px; }
+  .bitrix-case__block-title { font-size: 14.5px; }
+  .bitrix-case__text { font-size: 14px; }
+  .bitrix-case__list li { font-size: 13.5px; }
+  .bitrix-case__solution-item { padding: 16px 16px; gap: 14px; }
+  .bitrix-case__solution-num { width: 32px; height: 32px; font-size: 14px; }
+  .bitrix-case__solution-title { font-size: 14.5px; }
+  .bitrix-case__result { padding: 20px; }
+  .bitrix-case__result-text { font-size: 14px; }
+}
+
+@media (max-width: 500px) {
+  .bitrix-cases { width: 95%; margin: 60px auto; }
+  .bitrix-case__head { padding: 16px 14px; }
+  .bitrix-case__icon { display: none; }
+  .bitrix-case__badge { font-size: 10px; padding: 2px 10px; }
+  .bitrix-case__title { font-size: 14px; }
+  .bitrix-case__body { padding: 0 14px; }
+  .bitrix-case.is-open .bitrix-case__body { padding: 4px 14px 20px; }
+}

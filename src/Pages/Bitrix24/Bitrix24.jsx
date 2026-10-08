@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import ServiceTemplate from "../../Components/ServiceTemplate/ServiceTemplate";
 import serviceDb from "../../data/services.json";
 import ServiceForm from "../../Components/ServiceForm/ServiceForm";
-
+import Cases from "./Cases";
+import SectionNav from "./SectionNav";
 export default function Bitrix24({setBodyScroll}) {
     const videos = [
     {
@@ -144,7 +145,7 @@ export default function Bitrix24({setBodyScroll}) {
               Кибербезопасность
             </a>
           </div>
-  <div className="box-version">
+  <div id="section-box"  className="box-version">
             <div className="box-version__header">
               <div className="box-version__logo">
                 <img src="./bitrix-box-logo.webp" alt="Битрикс24 Коробочная версия" />
@@ -300,7 +301,7 @@ export default function Bitrix24({setBodyScroll}) {
     </div>
   </div>
 </div>
-    <div className="bitrix-weightless">
+    <div id="section-weightless"  className="bitrix-weightless">
         <div className="bitrix-weightless__header">
           <h2 className="bitrix-weightless__title">Новый Битрикс24 Невесомость</h2>
           <p className="bitrix-weightless__date">15 мая состоялась онлайн-презентация обновлений Битрикс24</p>
@@ -405,7 +406,7 @@ export default function Bitrix24({setBodyScroll}) {
       </div>
 
 
-       <div className="box-version__pricing">
+       <div  id="section-pricing"  className="box-version__pricing">
           <h3 className="box-version__section-title">Редакции и стоимость</h3>
           
           <div className="pricing-table-container overflow-auto">
@@ -617,12 +618,20 @@ export default function Bitrix24({setBodyScroll}) {
                    target="_blank" 
                    rel="noopener noreferrer">
                   Скачать бесплатную демо-версию
-                </a>
+                </a> 
               </div>
             </div>
           </div>
 
-          <div className="theory">
+
+<Cases 
+setModal = {setModal}
+setBodyScroll = {setBodyScroll}
+
+/>
+
+
+          <div  id="section-theory"  className="theory">
             <p className="theory__title"> Что такое Битрикс24?</p>
             <div className="theory__wrapper">
               <img className="theory__lamp" src="/src/assets/lamp.png" alt="" />
@@ -639,7 +648,7 @@ export default function Bitrix24({setBodyScroll}) {
               </div>
             </div>
           </div>
-          <div className="role">
+          <div  id="section-role"  className="role">
             <div className="role__top">
               <div className="role__text">
                 <p className="role__title">Роль Битрикс24 в бизнесе:</p>
@@ -672,7 +681,7 @@ export default function Bitrix24({setBodyScroll}) {
               получить бесплатную консультацию
             </button>
           </div>
-          <div className="when-new">
+          <div  id="section-when"  className="when-new">
             <p className="when-new__title title">
               Когда пора внедрять битрикс24?{" "}
             </p>
@@ -823,7 +832,7 @@ export default function Bitrix24({setBodyScroll}) {
               </div>
             </div>
           </div>
-          <div className="our-services">
+          <div  id="section-services"  className="our-services">
             <p className="our-services__title">Наши услуги</p>
             <div className="our-services__wrapper">
               <div className="our-services__item">
@@ -936,7 +945,7 @@ export default function Bitrix24({setBodyScroll}) {
             }} className="role__button service-button flare-button">
             Получить консультацию
           </button>
-          <div className="why-auto">
+          <div  id="section-why"  className="why-auto">
             <div className="why-auto__left">
               <img src="./why-bitrix.png" className="why-auto__img" alt="" />
               <p className="why-auto__title">
@@ -1039,6 +1048,7 @@ export default function Bitrix24({setBodyScroll}) {
           </div>
         </div>
       </div>
+      <SectionNav />
     </div>
   );
 }
