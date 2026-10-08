@@ -19,7 +19,8 @@ concurrency:
 jobs:
   build:
     name: Build frontend
-    runs-on: self-hosted
+    runs-on:
+      group: build
 
     steps:
       - name: Checkout code
@@ -64,7 +65,8 @@ jobs:
     name: Deploy frontend
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: build
-    runs-on: self-hosted
+    runs-on:
+      group: regiuslab-prod
 
     steps:
       - name: Checkout code
