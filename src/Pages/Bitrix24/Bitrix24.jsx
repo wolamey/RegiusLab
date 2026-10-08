@@ -96,7 +96,7 @@ export default function Bitrix24({setBodyScroll}) {
         )}
       <div>
         <div className="service">
-          <div className="service__main bg-[url(./bitrix-back.png)]">
+          <div className="service__main bg-[url(/bitrix-back.png)]">
             <div className="service__main-back"></div>
             <div className="service__main-container">
               <h1 className="service__main-title">Битрикс24</h1>
