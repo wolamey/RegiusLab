@@ -4,7 +4,7 @@ import serviceDb from "../../data/services.json";
 import ServiceForm from "../../Components/ServiceForm/ServiceForm";
 import Cases from "./Cases";
 import SectionNav from "./SectionNav";
-export default function Bitrix24({setBodyScroll}) {
+export default function Битрикс24({setBodyScroll}) {
     const videos = [
     {
       url: "https://www.youtube.com/watch?v=EUbshXE0ei0",
@@ -85,7 +85,7 @@ export default function Bitrix24({setBodyScroll}) {
   };
   return (
     <div>
-      {/* <ServiceTemplate currentInfo={serviceDb.Bitrix24} /> */}
+      {/* <ServiceTemplate currentInfo={serviceDb.Битрикс24} /> */}
  {modal && (
           <ServiceForm
             modal={modal}
@@ -127,7 +127,7 @@ export default function Bitrix24({setBodyScroll}) {
               Блокчейн и WEB3
             </a>
             <a className="tabs__item " href="/automatization">
-              Автоматизация бизнеса
+             AI Автоматизация бизнеса
             </a>
             <a className="tabs__item " href="/telegram-bots">
               Telegram боты
@@ -163,7 +163,7 @@ export default function Bitrix24({setBodyScroll}) {
                      rel="noopener noreferrer">
                     Скачать демо-версию
                   </a>
-                  {/* <a href="https://www.bitrix24.by/features/box/box.php" 
+                  {/* <a href="https://www.Битрикс24.by/features/box/box.php" 
                      className="box-version__link" 
                      target="_blank" 
                      rel="noopener noreferrer">
@@ -704,7 +704,7 @@ setBodyScroll = {setBodyScroll}
                       ваши бизнес-процессы разрознены и неэффективны
                     </span>
                     <span className="when-new__text-item">
-                      – Bitrix24 объединит все в одном месте, обеспечив полный
+                      – Битрикс24 объединит все в одном месте, обеспечив полный
                       контроль и прозрачность.
                     </span>
                   </div>
@@ -728,7 +728,7 @@ setBodyScroll = {setBodyScroll}
                       ваши сотрудники тратят много времени на переписку и звонки{" "}
                     </span>
                     <span className="when-new__text-item">
-                      – Bitrix24 обеспечит мгновенную и эффективную коммуникацию
+                      – Битрикс24 обеспечит мгновенную и эффективную коммуникацию
                       через чат, видеозвонки и группы.
                     </span>
                   </div>
@@ -752,7 +752,7 @@ setBodyScroll = {setBodyScroll}
                       проекты не укладываются в сроки{" "}
                     </span>
                     <span className="when-new__text-item">
-                      – Bitrix24 поможет автоматизировать управление проектами и
+                      – Битрикс24 поможет автоматизировать управление проектами и
                       следить за дедлайнами.
                     </span>
                   </div>
@@ -776,7 +776,7 @@ setBodyScroll = {setBodyScroll}
                       вы не видите, как выполняются задачи
                     </span>
                     <span className="when-new__text-item">
-                      – Bitrix24 обеспечит полную прозрачность и контроль над
+                      – Битрикс24 обеспечит полную прозрачность и контроль над
                       процессами.
                     </span>
                   </div>
@@ -800,7 +800,7 @@ setBodyScroll = {setBodyScroll}
                       вы не можете эффективно управлять клиентской базой
                     </span>
                     <span className="when-new__text-item">
-                      – Bitrix24 обеспечит мощные CRM-инструменты для улучшения
+                      – Битрикс24 обеспечит мощные CRM-инструменты для улучшения
                       взаимодействия с клиентами.
                     </span>
                   </div>
@@ -824,7 +824,7 @@ setBodyScroll = {setBodyScroll}
                       вы не можете эффективно управлять процессом продаж
                     </span>
                     <span className="when-new__text-item">
-                      – Bitrix24 обеспечит мощные инструменты для управления
+                      – Битрикс24 обеспечит мощные инструменты для управления
                       продажами и аналитики.
                     </span>
                   </div>
