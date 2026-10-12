@@ -67,7 +67,7 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/cookie-settings" element={<CookieSettings />} />
 
-          <Route path="/blockchain&web3" element={<Blockchain />} />
+          {/* <Route path="/blockchain&web3" element={<Blockchain />} /> */}
           <Route path="/automatization" element={<Automatization />} />
           <Route path="/telegram-bots" element={<TelegramBots />} />
           <Route path="/1c-development" element={<OneCDev />} />

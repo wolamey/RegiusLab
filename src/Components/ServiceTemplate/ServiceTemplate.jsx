@@ -28,13 +28,13 @@ export default function ServiceTemplate({ currentInfo }) {
   const [modal, setModal] = useState(false);
 
   const services = [
-    serviceDb.blockchain,
+    // serviceDb.blockchain,
     serviceDb.automatization,
     serviceDb.telegram,
     serviceDb['1Cdev'],
     serviceDb.SitesDev,
     serviceDb.Bitrix24,
-    serviceDb.cybersecurity
+    // serviceDb.cybersecurity
   ];
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });

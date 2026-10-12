@@ -32,13 +32,13 @@ export default function Automatization() {
   }, []);
 
   const services = [
-    serviceDb.blockchain,
+    // serviceDb.blockchain,
     serviceDb.automatization,
     serviceDb.telegram,
     serviceDb["1Cdev"],
     serviceDb.SitesDev,
     serviceDb.Bitrix24,
-    serviceDb.cybersecurity,
+    // serviceDb.cybersecurity,
   ];
 
   const currentPath = window.location.pathname;

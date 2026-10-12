@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import ServiceTemplate from "../../Components/ServiceTemplate/ServiceTemplate";
-import serviceDb from "../../data/services.json";
+
 import ServiceForm from "../../Components/ServiceForm/ServiceForm";
 import Cases from "./Cases";
 import SectionNav from "./SectionNav";
@@ -96,36 +95,39 @@ export default function Битрикс24({setBodyScroll}) {
         )}
       <div>
         <div className="service">
-          <div className="service__main bg-[url(/bitrix-back.png)]">
-            <div className="service__main-back"></div>
-            <div className="service__main-container">
-              <h1 className="service__main-title">Битрикс24</h1>
-              <p className="service__main-description">
-                — ваш универсальный инструмент для бизнеса! Управляйте
-                проектами, автоматизируйте процессы и улучшайте взаимодействие с
-                клиентами в одном месте.
-              </p>
-              <div className="service__main-bullit-wrapper">
-                <div className="service__main-bullit">
-                  Единое рабочее пространство
-                </div>
-                <div className="service__main-bullit">Мощная CRM-система</div>
-                <div className="service__main-bullit">
-                  Надежная защита данных
-                </div>
-              </div>
-              <button    onClick={() => {
-              setModal(true);
-              setBodyScroll(true);
-            }}  className="service__main-button role__button flare-button">
-                Связаться
-              </button>
-            </div>
-          </div>
+    <div className="service__main bg-[url(/bitrix-back.png)]">
+  <div className="service__main-back"></div>
+  <div className="service__main-container">
+    <h1 className="service__main-title">CRM Битрикс24, amoCRM</h1>
+    <p className="service__main-description">
+      — управляйте продажами, проектами и клиентами в едином пространстве.
+      Внедряем, дорабатываем и интегрируем CRM Битрикс24 и amoCRM под задачи
+      вашего бизнеса.
+    </p>
+    <div className="service__main-bullit-wrapper">
+      <div className="service__main-bullit">
+        Единое окно для продаж и клиентов
+      </div>
+      <div className="service__main-bullit">
+        Гибкая настройка под любую отрасль
+      </div>
+      <div className="service__main-bullit">
+        Интеграции с 1С, телефонией и AI-сервисами
+      </div>
+    </div>
+    <button
+      onClick={() => {
+        setModal(true);
+        setBodyScroll(true);
+      }}
+      className="service__main-button role__button flare-button"
+    >
+      Связаться
+    </button>
+  </div>
+</div>
           <div className="tabs">
-            <a className="tabs__item " href="/blockchain&amp;web3">
-              Блокчейн и WEB3
-            </a>
+  
             <a className="tabs__item " href="/automatization">
              AI Автоматизация бизнеса
             </a>
@@ -139,11 +141,9 @@ export default function Битрикс24({setBodyScroll}) {
               Разработка сайтов
             </a>
             <a className="tabs__item active" href="/b24">
-              Битрикс24
+          CRM Битрикс24, amoCRM
             </a>
-            <a className="tabs__item " href="/cybersecurity">
-              Кибербезопасность
-            </a>
+     
           </div>
   <div id="section-box"  className="box-version">
             <div className="box-version__header">
@@ -631,374 +631,327 @@ setBodyScroll = {setBodyScroll}
 />
 
 
-          <div  id="section-theory"  className="theory">
-            <p className="theory__title"> Что такое Битрикс24?</p>
-            <div className="theory__wrapper">
-              <img className="theory__lamp" src="/src/assets/lamp.png" alt="" />
-              <div className="theory__text">
-                <p className="theory__item">
-                  Битрикс24 — это комплексная платформа для управления бизнесом,
-                  объединяющая в себе инструменты для совместной работы, CRM,
-                  задачи и проекты, сайты и магазины, а также автоматизацию
-                  бизнес-процессов. С помощью Битрикс24 компании могут перенести
-                  все рабочие коммуникации, продажи, проекты и бизнес-процессы в
-                  единое пространство, что значительно упрощает управление и
-                  повышает эффективность работы.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div  id="section-role"  className="role">
-            <div className="role__top">
-              <div className="role__text">
-                <p className="role__title">Роль Битрикс24 в бизнесе:</p>
-              </div>
-            </div>
-            <div className="role__wrapper">
-              <div className="role__item">
-                <img src="./role61.png" className="role__item-img" alt="" />
-                <p className="role__item-text">Улучшение коммуникации</p>
-              </div>
-              <div className="role__item">
-                <img src="./role62.png" className="role__item-img" alt="" />
-                <p className="role__item-text">Управление продажами</p>
-              </div>
-              <div className="role__item">
-                <img src="./role63.png" className="role__item-img" alt="" />
-                <p className="role__item-text">
-                  Организация работы над проектами
-                </p>
-              </div>
-              <div className="role__item">
-                <img src="./role64.png" className="role__item-img" alt="" />
-                <p className="role__item-text">Создание сайтов и магазинов</p>
-              </div>
-            </div>
-            <button        onClick={() => {
-              setModal(true);
-              setBodyScroll(true);
-            }} className="role__button flare-button">
-              получить бесплатную консультацию
-            </button>
-          </div>
-          <div  id="section-when"  className="when-new">
-            <p className="when-new__title title">
-              Когда пора внедрять битрикс24?{" "}
+       <div id="section-theory" className="theory">
+  <p className="theory__title">Что такое CRM Битрикс24 и amoCRM?</p>
+  <div className="theory__wrapper">
+    <img className="theory__lamp" src="/src/assets/lamp.png" alt="" />
+    <div className="theory__text">
+      <p className="theory__item">
+        CRM — это система управления взаимоотношениями с клиентами, которая
+        собирает все коммуникации, сделки, задачи и документы в едином
+        пространстве. Битрикс24 и amoCRM — две ведущие платформы на рынке СНГ,
+        каждая со своей сильной стороной: Битрикс24 даёт максимум инструментов
+        в одном окне (CRM, задачи, проекты, сайты, телефония, HR), а amoCRM
+        фокусируется на воронках продаж и удобстве работы отдела.
+      </p>
+      <p className="theory__item">
+        Мы помогаем выбрать подходящую платформу, внедряем её под процессы
+        вашего бизнеса, дорабатываем функционал и интегрируем с 1С, телефонией,
+        AI-сервисами и внешними системами.
+      </p>
+    </div>
+  </div>
+</div>
+  <div id="section-role" className="role">
+  <div className="role__top">
+    <div className="role__text">
+      <p className="role__title">Роль CRM в бизнесе:</p>
+    </div>
+  </div>
+  <div className="role__wrapper">
+    <div className="role__item">
+      <img src="./role61.png" className="role__item-img" alt="" />
+      <p className="role__item-text">Управление воронкой продаж</p>
+    </div>
+    <div className="role__item">
+      <img src="./role62.png" className="role__item-img" alt="" />
+      <p className="role__item-text">
+        Удержание клиентов и повторные продажи
+      </p>
+    </div>
+    <div className="role__item">
+      <img src="./role63.png" className="role__item-img" alt="" />
+      <p className="role__item-text">Автоматизация рутинных процессов</p>
+    </div>
+    <div className="role__item">
+      <img src="./role64.png" className="role__item-img" alt="" />
+      <p className="role__item-text">
+        Аналитика по каждому этапу и сотруднику
+      </p>
+    </div>
+  </div>
+  <button
+    onClick={() => {
+      setModal(true);
+      setBodyScroll(true);
+    }}
+    className="role__button flare-button"
+  >
+    получить бесплатную консультацию
+  </button>
+</div>
+  <div id="section-when" className="when-new">
+  <p className="when-new__title title">
+    Когда пора внедрять CRM Битрикс24 или amoCRM?
+  </p>
+  <div className="when-new__wrapper">
+    <div className="when-new__item">
+      <div className="new__item_container">
+        <div className="when-new__item-top">
+          <img src="./when-b241.svg" className="when-new__img" alt="" />
+          <p className="when-new__item-title">
+            Продажи теряются в переписках
+          </p>
+        </div>
+        <div className="when-new__text">
+          <span className="when-new__text-item">Если</span>
+          <span className="when-new__text-item">
+            заявки и клиенты живут в разных мессенджерах, таблицах и блокнотах
+            менеджеров
+          </span>
+          <span className="when-new__text-item">
+            – CRM соберёт все коммуникации в единой воронке с историей сделок
+            и задачами.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div className="when-new__item">
+      <div className="new__item_container">
+        <div className="when-new__item-top">
+          <img src="./when-b242.svg" className="when-new__img" alt="" />
+          <p className="when-new__item-title">
+            Нет прозрачности по сделкам
+          </p>
+        </div>
+        <div className="when-new__text">
+          <span className="when-new__text-item">Если</span>
+          <span className="when-new__text-item">
+            руководитель не видит, на каком этапе застряла каждая сделка и
+            сколько денег «в работе»
+          </span>
+          <span className="when-new__text-item">
+            – CRM даст прозрачные дашборды и прогноз выручки в реальном
+            времени.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div className="when-new__item">
+      <div className="new__item_container">
+        <div className="when-new__item-top">
+          <img src="./when-b243.svg" className="when-new__img" alt="" />
+          <p className="when-new__item-title">Менеджеры забывают клиентов</p>
+        </div>
+        <div className="when-new__text">
+          <span className="when-new__text-item">Если</span>
+          <span className="when-new__text-item">
+            клиенты не получают напоминаний, а задачи теряются
+          </span>
+          <span className="when-new__text-item">
+            – CRM автоматически ставит задачи, шлёт напоминания и контролирует
+            каждый шаг.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div className="when-new__item">
+      <div className="new__item_container">
+        <div className="when-new__item-top">
+          <img src="./when-b244.svg" className="when-new__img" alt="" />
+          <p className="when-new__item-title">Разрозненные системы</p>
+        </div>
+        <div className="when-new__text">
+          <span className="when-new__text-item">Если</span>
+          <span className="when-new__text-item">
+            1С, телефония, сайт и почта не связаны между собой
+          </span>
+          <span className="when-new__text-item">
+            – мы настроим интеграции, чтобы данные текли в CRM автоматически,
+            без ручного ввода.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div className="when-new__item">
+      <div className="new__item_container">
+        <div className="when-new__item-top">
+          <img src="./when-b245.svg" className="when-new__img" alt="" />
+          <p className="when-new__item-title">
+            Сложно контролировать работу отдела
+          </p>
+        </div>
+        <div className="when-new__text">
+          <span className="when-new__text-item">Если</span>
+          <span className="when-new__text-item">
+            непонятно, кто из менеджеров эффективен, а кто теряет клиентов
+          </span>
+          <span className="when-new__text-item">
+            – CRM даст аналитику по каждому сотруднику: конверсия, средний чек,
+            скорость реакции.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div className="when-new__item">
+      <div className="new__item_container">
+        <div className="when-new__item-top">
+          <img src="./when-b246.svg" className="when-new__img" alt="" />
+          <p className="when-new__item-title">Хочется больше автоматизации</p>
+        </div>
+        <div className="when-new__text">
+          <span className="when-new__text-item">Если</span>
+          <span className="when-new__text-item">
+            вы готовы внедрять AI-инструменты, роботов и сквозную аналитику
+          </span>
+          <span className="when-new__text-item">
+            – Битрикс24 и amoCRM станут фундаментом для роста и цифровой
+            трансформации.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div id="section-services" className="our-services">
+  <p className="our-services__title">Наши услуги</p>
+  <div className="our-services__wrapper">
+    <div className="our-services__item">
+      <div className="our-services__item-content">
+        <div className="our-services__item-content-container">
+          <p className="our-services__item-content-num">01</p>
+          <div className="our-services__item-text">
+            <p className="our-services__item-content-title">
+              Внедрение и настройка CRM
             </p>
-            <div className="when-new__wrapper">
-              <div className="when-new__item">
-                <div className="new__item_container">
-                  <div className="when-new__item-top">
-                    <img
-                      src="./when-b241.svg"
-                      className="when-new__img"
-                      alt=""
-                    />
-                    <p className="when-new__item-title">
-                      Отсутствие единого центра управления
-                    </p>
-                  </div>
-                  <div className="when-new__text">
-                    <span className="when-new__text-item">Если</span>
-                    <span className="when-new__text-item">
-                      ваши бизнес-процессы разрознены и неэффективны
-                    </span>
-                    <span className="when-new__text-item">
-                      – Битрикс24 объединит все в одном месте, обеспечив полный
-                      контроль и прозрачность.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="when-new__item">
-                <div className="new__item_container">
-                  <div className="when-new__item-top">
-                    <img
-                      src="./when-b242.svg"
-                      className="when-new__img"
-                      alt=""
-                    />
-                    <p className="when-new__item-title">
-                      Сложности с коммуникацией
-                    </p>
-                  </div>
-                  <div className="when-new__text">
-                    <span className="when-new__text-item">Если</span>
-                    <span className="when-new__text-item">
-                      ваши сотрудники тратят много времени на переписку и звонки{" "}
-                    </span>
-                    <span className="when-new__text-item">
-                      – Битрикс24 обеспечит мгновенную и эффективную коммуникацию
-                      через чат, видеозвонки и группы.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="when-new__item">
-                <div className="new__item_container">
-                  <div className="when-new__item-top">
-                    <img
-                      src="./when-b243.svg"
-                      className="when-new__img"
-                      alt=""
-                    />
-                    <p className="when-new__item-title">
-                      Проблемы с управлением проектами
-                    </p>
-                  </div>
-                  <div className="when-new__text">
-                    <span className="when-new__text-item">Если</span>
-                    <span className="when-new__text-item">
-                      проекты не укладываются в сроки{" "}
-                    </span>
-                    <span className="when-new__text-item">
-                      – Битрикс24 поможет автоматизировать управление проектами и
-                      следить за дедлайнами.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="when-new__item">
-                <div className="new__item_container">
-                  <div className="when-new__item-top">
-                    <img
-                      src="./when-b244.svg"
-                      className="when-new__img"
-                      alt=""
-                    />
-                    <p className="when-new__item-title">
-                      Отсутствие прозрачности
-                    </p>
-                  </div>
-                  <div className="when-new__text">
-                    <span className="when-new__text-item">Если</span>
-                    <span className="when-new__text-item">
-                      вы не видите, как выполняются задачи
-                    </span>
-                    <span className="when-new__text-item">
-                      – Битрикс24 обеспечит полную прозрачность и контроль над
-                      процессами.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="when-new__item">
-                <div className="new__item_container">
-                  <div className="when-new__item-top">
-                    <img
-                      src="./when-b245.svg"
-                      className="when-new__img"
-                      alt=""
-                    />
-                    <p className="when-new__item-title">
-                      Проблемы с управлением клиентами
-                    </p>
-                  </div>
-                  <div className="when-new__text">
-                    <span className="when-new__text-item">Если</span>
-                    <span className="when-new__text-item">
-                      вы не можете эффективно управлять клиентской базой
-                    </span>
-                    <span className="when-new__text-item">
-                      – Битрикс24 обеспечит мощные CRM-инструменты для улучшения
-                      взаимодействия с клиентами.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="when-new__item">
-                <div className="new__item_container">
-                  <div className="when-new__item-top">
-                    <img
-                      src="./when-b246.svg"
-                      className="when-new__img"
-                      alt=""
-                    />
-                    <p className="when-new__item-title">
-                      Сложности с управлением продажами
-                    </p>
-                  </div>
-                  <div className="when-new__text">
-                    <span className="when-new__text-item">Если</span>
-                    <span className="when-new__text-item">
-                      вы не можете эффективно управлять процессом продаж
-                    </span>
-                    <span className="when-new__text-item">
-                      – Битрикс24 обеспечит мощные инструменты для управления
-                      продажами и аналитики.
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div className="our-services__item-content-line"></div>
+            <p className="our-services__item-content-description">
+              Подбираем платформу под ваш бизнес (Битрикс24 или amoCRM),
+              настраиваем воронки, карточки, права доступа и автоматизации.
+              Переносим данные из старых систем, обучаем сотрудников и
+              сопровождаем на старте.
+            </p>
           </div>
-          <div  id="section-services"  className="our-services">
-            <p className="our-services__title">Наши услуги</p>
-            <div className="our-services__wrapper">
-              <div className="our-services__item">
-                <div className="our-services__item-content">
-                  <div className="our-services__item-content-container">
-                    <p className="our-services__item-content-num">01</p>
-                    <div className="our-services__item-text">
-                      <p className="our-services__item-content-title">
-                        Автоматизация бизнес-процессов
-                      </p>
-                      <div className="our-services__item-content-line"></div>
-                      <p className="our-services__item-content-description">
-                        Мы предлагаем услуги по автоматизации бизнес-процессов с
-                        помощью Битрикс24. Это включает в себя настройку
-                        автоматических рассылок, обработку сделок, согласование
-                        договоров и многое другое. Автоматизация позволяет
-                        сократить время на выполнение рутинных задач и повысить
-                        общую эффективность работы компании.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="./bitrix1.png"
-                  className="our-services__item-img"
-                  alt=""
-                />
-              </div>
-              <div className="our-services__item">
-                <div className="our-services__item-content">
-                  <div className="our-services__item-content-container">
-                    <p className="our-services__item-content-num">02</p>
-                    <div className="our-services__item-text">
-                      <p className="our-services__item-content-title">
-                        Интеграция с 1С
-                      </p>
-                      <div className="our-services__item-content-line"></div>
-                      <p className="our-services__item-content-description">
-                        Мы осуществляем интеграцию Битрикс24 с 1С, что позволяет
-                        синхронизировать данные между системами и
-                        автоматизировать обмен информацией. Это обеспечивает
-                        более точное и оперативное управление финансовыми и
-                        складскими операциями.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="./bitrix2.png"
-                  className="our-services__item-img"
-                  alt=""
-                />
-              </div>
-              <div className="our-services__item">
-                <div className="our-services__item-content">
-                  <div className="our-services__item-content-container">
-                    <p className="our-services__item-content-num">03</p>
-                    <div className="our-services__item-text">
-                      <p className="our-services__item-content-title">
-                        Внедрение и настройка Битрикс24
-                      </p>
-                      <div className="our-services__item-content-line"></div>
-                      <p className="our-services__item-content-description">
-                        Наши специалисты помогут вам внедрить и настроить
-                        Битрикс24 облачной и коробочной редакции в соответствии
-                        с потребностями вашего бизнеса. Мы проведем анализ
-                        текущих процессов, настроим систему под ваши задачи и
-                        обучим сотрудников работе с платформой.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="./bitrix3.png"
-                  className="our-services__item-img"
-                  alt=""
-                />
-              </div>
-              <div className="our-services__item">
-                <div className="our-services__item-content">
-                  <div className="our-services__item-content-container">
-                    <p className="our-services__item-content-num">04</p>
-                    <div className="our-services__item-text">
-                      <p className="our-services__item-content-title">
-                        Поддержка и доработка Битрикс24
-                      </p>
-                      <div className="our-services__item-content-line"></div>
-                      <p className="our-services__item-content-description">
-                        Мы предлагаем услуги по поддержке и доработке Битрикс24
-                        облачной и коробочной редакции. Это включает в себя
-                        техническую поддержку, обновление системы, разработку
-                        дополнительных модулей и интеграций. Мы гарантируем
-                        высокое качество обслуживания и оперативное решение
-                        любых возникающих вопросов.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="./bitrix4.png"
-                  className="our-services__item-img"
-                  alt=""
-                />
-              </div>
-            </div>
+        </div>
+      </div>
+      <img src="./bitrix1.png" className="our-services__item-img" alt="" />
+    </div>
+    <div className="our-services__item">
+      <div className="our-services__item-content">
+        <div className="our-services__item-content-container">
+          <p className="our-services__item-content-num">02</p>
+          <div className="our-services__item-text">
+            <p className="our-services__item-content-title">
+              Интеграция с 1С и внешними системами
+            </p>
+            <div className="our-services__item-content-line"></div>
+            <p className="our-services__item-content-description">
+              Синхронизируем CRM с 1С, телефонией, сайтом, почтой, мессенджерами
+              и платёжными системами. Настраиваем двусторонний обмен так, чтобы
+              данные не дублировались и не терялись.
+            </p>
           </div>
+        </div>
+      </div>
+      <img src="./bitrix2.png" className="our-services__item-img" alt="" />
+    </div>
+    <div className="our-services__item">
+      <div className="our-services__item-content">
+        <div className="our-services__item-content-container">
+          <p className="our-services__item-content-num">03</p>
+          <div className="our-services__item-text">
+            <p className="our-services__item-content-title">
+              Доработка и кастомные модули
+            </p>
+            <div className="our-services__item-content-line"></div>
+            <p className="our-services__item-content-description">
+              Разрабатываем собственные модули и расширения под специфику
+              бизнеса: реестр договоров, товарный каталог, управление арендой,
+              личный кабинет водителя, интеграции с AI-сервисами и многое
+              другое.
+            </p>
+          </div>
+        </div>
+      </div>
+      <img src="./bitrix3.png" className="our-services__item-img" alt="" />
+    </div>
+    <div className="our-services__item">
+      <div className="our-services__item-content">
+        <div className="our-services__item-content-container">
+          <p className="our-services__item-content-num">04</p>
+          <div className="our-services__item-text">
+            <p className="our-services__item-content-title">
+              Поддержка и развитие CRM
+            </p>
+            <div className="our-services__item-content-line"></div>
+            <p className="our-services__item-content-description">
+              Обеспечиваем техническую поддержку, обновление системы, аудит
+              процессов и постоянное развитие. Помогаем адаптировать CRM к
+              изменениям бизнеса и находить точки роста через автоматизацию.
+            </p>
+          </div>
+        </div>
+      </div>
+      <img src="./bitrix4.png" className="our-services__item-img" alt="" />
+    </div>
+  </div>
+</div>
           <button        onClick={() => {
               setModal(true);
               setBodyScroll(true);
             }} className="role__button service-button flare-button">
             Получить консультацию
           </button>
-          <div  id="section-why"  className="why-auto">
-            <div className="why-auto__left">
-              <img src="./why-bitrix.png" className="why-auto__img" alt="" />
-              <p className="why-auto__title">
-                Почему стоит внедрять Битрикс24 в бизнес
-              </p>
-            </div>
-            <div className="why-auto__wrapper">
-              <div className="why-auto__item">
-                <p className="why-auto__text">
-                  <span className="why-auto__item-title">
-                    Сократить время на выполнение рутинных задач:{" "}
-                  </span>
-                  <span className="why-auto__description">
-                    Автоматизация процессов освобождает время для более важных
-                    задач.
-                  </span>
-                </p>
-              </div>
-              <div className="why-auto__item">
-                <p className="why-auto__text">
-                  <span className="why-auto__item-title">
-                    Повысить продуктивность команды:{" "}
-                  </span>
-                  <span className="why-auto__description">
-                    Все инструменты для работы находятся в одном месте, что
-                    упрощает доступ к информации и улучшает координацию.
-                  </span>
-                </p>
-              </div>
-              <div className="why-auto__item">
-                <p className="why-auto__text">
-                  <span className="why-auto__item-title">
-                    Улучшить качество обслуживания клиентов:{" "}
-                  </span>
-                  <span className="why-auto__description">
-                    CRM-система помогает лучше понимать потребности клиентов и
-                    оперативно реагировать на их запросы.
-                  </span>
-                </p>
-              </div>
-              <div className="why-auto__item">
-                <p className="why-auto__text">
-                  <span className="why-auto__item-title">
-                    Снизить затраты на IT-инфраструктуру:{" "}
-                  </span>
-                  <span className="why-auto__description">
-                    Битрикс24 предлагает облачное решение, что позволяет
-                    сократить расходы на серверы и программное обеспечение.
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
+   <div id="section-why" className="why-auto">
+  <div className="why-auto__left">
+    <img src="./why-bitrix.png" className="why-auto__img" alt="" />
+    <p className="why-auto__title">
+      Почему стоит внедрять CRM в бизнес
+    </p>
+  </div>
+  <div className="why-auto__wrapper">
+    <div className="why-auto__item">
+      <p className="why-auto__text">
+        <span className="why-auto__item-title">Прозрачность продаж: </span>
+        <span className="why-auto__description">
+          Каждая сделка, звонок и письмо — в единой системе. Руководитель
+          видит реальную картину по воронке и прогноз выручки.
+        </span>
+      </p>
+    </div>
+    <div className="why-auto__item">
+      <p className="why-auto__text">
+        <span className="why-auto__item-title">
+          Рост повторных продаж:{" "}
+        </span>
+        <span className="why-auto__description">
+          CRM помогает не терять клиентов после первой сделки и системно
+          возвращать их через напоминания и персональные предложения.
+        </span>
+      </p>
+    </div>
+    <div className="why-auto__item">
+      <p className="why-auto__text">
+        <span className="why-auto__item-title">Автоматизация рутины: </span>
+        <span className="why-auto__description">
+          Роботы, бизнес-процессы и интеграции освобождают менеджеров от
+          ручной работы и снижают количество ошибок.
+        </span>
+      </p>
+    </div>
+    <div className="why-auto__item">
+      <p className="why-auto__text">
+        <span className="why-auto__item-title">
+          Фундамент для AI и аналитики:{" "}
+        </span>
+        <span className="why-auto__description">
+          CRM — это база для внедрения AI-инструментов: аудит звонков,
+          предиктивная аналитика, автогенерация документов.
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
           <button        onClick={() => {
               setModal(true);
               setBodyScroll(true);

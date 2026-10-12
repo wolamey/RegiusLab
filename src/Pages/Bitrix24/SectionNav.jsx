@@ -6,7 +6,7 @@ const SECTIONS = [
   { id: "section-weightless", label: "Невесомость" },
   { id: "section-pricing",    label: "Редакции и цены" },
   { id: "section-cases",      label: "Кейсы" },
-  { id: "section-theory",     label: "Что такое Б24" },
+  { id: "section-theory",     label: "Что такое CRM" },
   { id: "section-role",       label: "Роль в бизнесе" },
   { id: "section-when",       label: "Когда внедрять" },
   { id: "section-services",   label: "Наши услуги" },
@@ -50,7 +50,6 @@ export default function SectionNav() {
       onMouseLeave={() => setOpen(false)}
       aria-label="Навигация по разделам"
     >
-      {/* Кнопка-триггер (виден всегда, когда блок свёрнут) */}
       <button
         type="button"
         className="section-nav__trigger"
@@ -58,8 +57,8 @@ export default function SectionNav() {
         aria-expanded={open}
         aria-label="Развернуть навигацию"
       >
+        {/* Компас */}
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          {/* Компас */}
           <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
           <path
             d="M15.5 8.5L13.5 13.5L8.5 15.5L10.5 10.5L15.5 8.5Z"
@@ -70,21 +69,17 @@ export default function SectionNav() {
           />
         </svg>
 
-        {/* Мини-индикаторы активного раздела (видны только когда свёрнут) */}
-        <span className="section-nav__mini-dots" aria-hidden="true">
-    {/* Мини-индикаторы активного раздела (столбик полосок) */}
-<span className="section-nav__mini-bars" aria-hidden="true">
-  {SECTIONS.map((s) => (
-    <span
-      key={s.id}
-      className={`section-nav__mini-bar ${active === s.id ? "is-active" : ""}`}
-    />
-  ))}
-</span>
+        {/* Мини-индикаторы — столбик полосок */}
+        <span className="section-nav__mini-bars" aria-hidden="true">
+          {SECTIONS.map((s) => (
+            <span
+              key={s.id}
+              className={`section-nav__mini-bar ${active === s.id ? "is-active" : ""}`}
+            />
+          ))}
         </span>
       </button>
 
-      {/* Выпадающий список (виден при наведении) */}
       <div className="section-nav__panel">
         <div className="section-nav__title">Навигация</div>
         <ul className="section-nav__list">

@@ -33,7 +33,7 @@ export default function ServiceNewTemplate({currentInfo}) {
   const [modal, setModal] = useState(false);
 
   const services = [
-    serviceDb.blockchain,
+    // serviceDb.blockchain,
     serviceDb.automatization,
     serviceDb.telegram,
     serviceDb['1Cdev'],
