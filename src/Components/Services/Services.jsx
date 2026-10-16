@@ -3,12 +3,12 @@ import { useState } from 'react';
 import './Services.scss';
 
 import bullit1 from '../../assets/bullit1.png';
-import bullit2 from '../../assets/bullit2.png';
-import bullit3 from '../../assets/bullit3.png';
-import bullit4 from '../../assets/bullit4.jpg';
-import bullit5 from '../../assets/bullit5.jpg';
+import bullit2 from '../../assets/bullit2.jpeg';
+import bullit3 from '../../assets/bullit3.jpeg';
+import bullit4 from '../../assets/bullit4.jpeg';
+import bullit5 from '../../assets/bullit5.jpeg';
 import arrowDownImg from '../../assets/arrow-down-right.png';
-import bullit6 from '../../assets/bullit6.png';
+import bullit6 from '../../assets/bullit6.jpeg';
 import bullit7 from '../../assets/cybersecurity.png'
 import serviceDb from '../../data/services.json';
 import { Link } from 'react-router-dom';

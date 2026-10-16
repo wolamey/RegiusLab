@@ -1,20 +1,8 @@
 // src/Components/CertificatesSlider/CertificatesSlider.jsx
-import React, { useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, A11y } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import React, { useState, useEffect, useRef } from 'react';
 import './CertificatesSlider.scss';
 
-// Импортируйте ваши PDF файлы
-import cert1 from '../assets/cert1.pdf';
-import cert2 from '../assets/cert2.pdf';
-import cert3 from '../assets/cert3.pdf';
-import cert4 from '../assets/cert4.pdf';
-import cert5 from '../assets/cert5.pdf';
-
-// Импортируйте превью изображения для сертификатов (скриншоты PDF)
+// Превью-картинки сертификатов
 import certPreview1 from '../assets/cert-preview1.png';
 import certPreview2 from '../assets/cert-preview2.png';
 import certPreview3 from '../assets/cert-preview3.png';
@@ -22,37 +10,14 @@ import certPreview4 from '../assets/cert-preview4.png';
 import certPreview5 from '../assets/cert-preview5.png';
 
 const certificates = [
-  {
-    id: 1,
-    title: 'Сертификат соответствия',
-    file: cert1,
-    preview: certPreview1,
-  },
-  {
-    id: 2,
-    title: 'Сертификат о присвоении компетенции "Коробочная версия"',
-    file: cert2,
-    preview: certPreview2,
-  },
-  {
-    id: 3,
-    title: 'Сертификат "Золотой партнер"',
-    file: cert3,
-    preview: certPreview3,
-  },
-  {
-    id: 4,
-    title: 'Сертификат о присвоении компетенции "Автоматизация"',
-    file: cert4,
-    preview: certPreview4,
-  },
-  {
-    id: 5,
-    title: 'Сертификат о присвоении компетенции "CRM"',
-    file: cert5,
-    preview: certPreview5,
-  },
+  { id: 1, title: 'Сертификат соответствия', preview: certPreview1 },
+  { id: 2, title: 'Сертификат о присвоении компетенции "Коробочная версия"', preview: certPreview2 },
+  { id: 3, title: 'Сертификат "Золотой партнер"', preview: certPreview3 },
+  { id: 4, title: 'Сертификат о присвоении компетенции "Автоматизация"', preview: certPreview4 },
+  { id: 5, title: 'Сертификат о присвоении компетенции "CRM"', preview: certPreview5 },
 ];
+
+/* ---------- Лицевая сторона (SVG-обложка) ---------- */
 function CertCover() {
   return (
     <svg
@@ -86,13 +51,11 @@ function CertCover() {
       <rect width="300" height="400" fill="url(#bgGrad)" />
       <circle cx="150" cy="150" r="130" fill="url(#glow)" />
 
-      {/* рамки */}
       <rect x="14" y="14" width="272" height="372" rx="16" ry="16"
         fill="none" stroke="url(#goldSoft)" strokeWidth="1.2" opacity="0.7" />
       <rect x="22" y="22" width="256" height="356" rx="12" ry="12"
         fill="none" stroke="url(#goldSoft)" strokeWidth="0.6" opacity="0.4" />
 
-      {/* угловые орнаменты */}
       {[
         [26, 26, 1, 1],
         [274, 26, -1, 1],
@@ -106,7 +69,6 @@ function CertCover() {
         </g>
       ))}
 
-      {/* лучи */}
       <g opacity="0.35">
         {Array.from({ length: 12 }).map((_, i) => {
           const a = (i * 30 * Math.PI) / 180;
@@ -123,13 +85,11 @@ function CertCover() {
         })}
       </g>
 
-      {/* лента */}
       <path d="M110 232 L150 260 L190 232 L190 300 L150 276 L110 300 Z"
         fill="url(#goldSoft)" opacity="0.9" />
       <path d="M110 232 L150 260 L190 232"
         fill="none" stroke="#7a5410" strokeWidth="1" />
 
-      {/* медаль */}
       <g className="certificates__medal">
         <circle cx="150" cy="150" r="58" fill="url(#gold)" />
         <circle cx="150" cy="150" r="58" fill="none" stroke="#7a5410" strokeWidth="1.5" />
@@ -156,7 +116,6 @@ function CertCover() {
         <circle cx="150" cy="150" r="10" fill="none" stroke="#3a2a08" strokeWidth="1.4" opacity="0.7" />
       </g>
 
-      {/* частицы */}
       <g className="certificates__particles">
         {[
           [60, 90], [240, 110], [80, 300], [230, 320],
@@ -168,294 +127,175 @@ function CertCover() {
     </svg>
   );
 }
-export function OpenSeal() {
-  return (
-    <div className="certificates-open-seal">
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="sealGold" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stopColor="#F4D77A" />
-            <stop offset="50%"  stopColor="#AF7B20" />
-            <stop offset="100%" stopColor="#7a5410" />
-          </linearGradient>
-          <radialGradient id="sealGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%"   stopColor="#AF7B20" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#AF7B20" stopOpacity="0" />
-          </radialGradient>
-        </defs>
 
-        {/* внешнее свечение */}
-        <circle cx="100" cy="100" r="90" fill="url(#sealGlow)" />
-
-        {/* раскрывающееся внешнее кольцо */}
-        <circle
-          className="seal-ring seal-ring--outer"
-          cx="100" cy="100" r="70"
-          fill="none"
-          stroke="url(#sealGold)"
-          strokeWidth="2"
-          strokeDasharray="10 6"
-        />
-
-        {/* вращающееся кольцо */}
-        <circle
-          className="seal-ring seal-ring--spin"
-          cx="100" cy="100" r="56"
-          fill="none"
-          stroke="#AF7B20"
-          strokeWidth="1.4"
-          strokeDasharray="4 10"
-          opacity="0.8"
-        />
-
-        {/* центральная печать */}
-        <circle
-          className="seal-core"
-          cx="100" cy="100" r="40"
-          fill="url(#sealGold)"
-        />
-        <circle cx="100" cy="100" r="40" fill="none" stroke="#7a5410" strokeWidth="1.5" />
-
-        {/* галочка */}
-        <path
-          className="seal-check"
-          d="M82 102 L95 115 L120 88"
-          fill="none"
-          stroke="#3a2a08"
-          strokeWidth="5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </div>
-  );
-}
-
-
-function CertificateCard({ cert, onOpen, isFlipping }) {
+/* ---------- Карточка с переворотом ---------- */
+function CertificateCard({ cert, onToggle, isFlipped }) {
   return (
     <div
-      className={`certificates__slide ${isFlipping ? 'is-flipping' : ''}`}
-      onClick={() => onOpen(cert)}
+      className={`certificates__card ${isFlipped ? 'is-flipped' : ''}`}
+      onClick={() => onToggle(cert)}
     >
-      <div className="certificates__slide-inner">
-        {/* лицевая сторона — SVG-обложка */}
-        <div className="certificates__slide-face certificates__slide-face--front">
+      <div className="certificates__card-inner">
+        {/* Лицевая сторона */}
+        <div className="certificates__card-face certificates__card-face--front">
           <CertCover />
-          <div className="certificates__slide-overlay">
-            <p className="certificates__slide-title">{cert.title}</p>
-            <span className="certificates__slide-btn">Посмотреть</span>
+          <div className="certificates__card-overlay">
+            <p className="certificates__card-title">{cert.title}</p>
+            <span className="certificates__card-btn">Посмотреть</span>
           </div>
         </div>
 
-        {/* обратная сторона — SVG-анимация раскрытия */}
-        <div className="certificates__slide-face certificates__slide-face--back">
-          <OpenSeal />
+        {/* Обратная сторона — картинка-превью */}
+        <div className="certificates__card-face certificates__card-face--back">
+          <img
+            src={cert.preview}
+            alt={cert.title}
+            className="certificates__card-preview"
+            draggable={false}
+          />
+          <div className="certificates__card-overlay certificates__card-overlay--back">
+            <p className="certificates__card-title certificates__card-title--back">
+              {cert.title}
+            </p>
+            <span className="certificates__card-btn certificates__card-btn--back">
+              Вернуться
+            </span>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-// Показывать во время перехода (flippingId !== null)
 
-
+/* ---------- Основной компонент ---------- */
 export default function CertificatesSlider() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPdf, setSelectedPdf] = useState(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-const [pdfLoaded, setPdfLoaded] = useState(false);       // PDF готов
-const [isClosing, setIsClosing] = useState(false);   
-const [flippingId, setFlippingId] = useState(null);
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth <= 768 : false
+  );
+  const [flippedId, setFlippedId] = useState(null);
+
+  const trackRef = useRef(null);
+  const rafRef = useRef(null);
+  const offsetRef = useRef(0);     // текущее смещение в px
+  const speedRef = useRef(0);      // текущая скорость px/ms
+  const targetSpeedRef = useRef(0); // целевая скорость (0 при hover, базовая иначе)
+  const lastTimeRef = useRef(0);
+  const hoverRef = useRef(false);
+  const halfWidthRef = useRef(0);
+
+  // базовая скорость ленты (px/ms). 0.05 ≈ 50px в секунду
+const BASE_SPEED = 0.05;
+
+
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-
-
-const closePdfModal = () => {
-  setIsClosing(true);
-  setTimeout(() => {
-    setIsModalOpen(false);
-    setIsClosing(false);
-    setSelectedPdf(null);
-    setPdfLoaded(false);
-    document.body.style.overflow = 'auto';
-  }, 450);
-};
-
-
+  // Пересчёт ширины половины ленты (одного набора карточек) для бесшовного цикла
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && isModalOpen) {
-        closePdfModal();
-      }
+    const measure = () => {
+      if (!trackRef.current) return;
+      // первая половина трека (оригинальные слайды)
+      const firstHalf = trackRef.current.children[0];
+      if (!firstHalf) return;
+      const total = trackRef.current.scrollWidth;
+      halfWidthRef.current = total / 2;
     };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, [isModalOpen]);
+    // даём браузеру отрисовать, потом меряем
+    const id = requestAnimationFrame(measure);
+    window.addEventListener('resize', measure);
+    return () => {
+      cancelAnimationFrame(id);
+      window.removeEventListener('resize', measure);
+    };
+  }, [isMobile]);
 
-const openPdfModal = (cert) => {
-  if (isModalOpen) return;
-  setFlippingId(cert.id);           // 1. переворот карточки
-  setPdfLoaded(false);
+  // Анимационный цикл
+ // Анимационный цикл
+useEffect(() => {
+  const tick = (time) => {
+    const last = lastTimeRef.current || time;
+    // ограничиваем dt, чтобы после фоновой вкладки не было скачка
+    const dt = Math.min(time - last, 50);
+    lastTimeRef.current = time;
 
-  setTimeout(() => {
-    setSelectedPdf(cert.file);      // 2. показываем модалку
-    setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
-  }, 500);
+    const target = targetSpeedRef.current;
+    const cur = speedRef.current;
 
-  setTimeout(() => {
-    setFlippingId(null);            // 3. карточка вернулась
-  }, 1000);
-};
-  // Модальное окно выносим отдельно, чтобы не дублировать
-const modal = isModalOpen && (
-  <div
-    className={`certificates-modal ${isClosing ? 'is-closing' : ''}`}
-    onClick={closePdfModal}
-  >
-    {/* золотые искры по краям */}
-    <div className="certificates-modal__sparks" aria-hidden="true">
-      {Array.from({ length: 18 }).map((_, i) => (
-        <span key={i} className={`spark spark--${i + 1}`} />
-      ))}
-    </div>
+    const ease = 0.008 * dt;
+    speedRef.current = cur + (target - cur) * Math.min(ease, 1);
 
-    {/* свечение за окном */}
-    <div className="certificates-modal__glow" aria-hidden="true" />
+    // двигаем ленту
+    offsetRef.current -= speedRef.current * dt;
 
-    <div
-      className="certificates-modal__content"
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* бегущий золотой блик по рамке */}
-      <div className="certificates-modal__shine" aria-hidden="true" />
+    // бесшовный цикл без скачков на границе
+    const half = halfWidthRef.current;
+    if (half > 0) {
+      offsetRef.current = offsetRef.current % half;
+      if (offsetRef.current > 0) offsetRef.current -= half;
+    }
 
-      <button className="certificates-modal__close" onClick={closePdfModal}>
-        ✕
-      </button>
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translate3d(${offsetRef.current}px, 0, 0)`;
+    }
 
-      <iframe
-        src={selectedPdf}
-        className={`certificates-modal__iframe ${pdfLoaded ? 'is-loaded' : ''}`}
-        title="Сертификат"
-        onLoad={() => setPdfLoaded(true)}
-      />
-    </div>
-  </div>
-);
+    rafRef.current = requestAnimationFrame(tick);
+  };
 
-  // Мобильная версия - слайдер по 1 элементу
-  if (isMobile) {
-    return (
-      <div className="certificates certificates--mobile">
-        <div className="certificates__container">
-          <p className="certificates__title">Наши сертификаты</p>
+  rafRef.current = requestAnimationFrame(tick);
+  return () => {
+    cancelAnimationFrame(rafRef.current);
+    lastTimeRef.current = 0;
+  };
+}, []);
 
-          <Swiper
-            modules={[Navigation, Pagination, A11y]}
-            slidesPerView={1}
-            spaceBetween={20}
-            navigation={{
-              prevEl: '.certificates__arrow-prev',
-              nextEl: '.certificates__arrow-next',
-            }}
-            pagination={{
-              el: '.certificates__dots',
-              clickable: true,
-              bulletClass: 'certificates__dot',
-              bulletActiveClass: 'certificates__dot-active',
-            }}
-            loop={true}
-            speed={500}
-            className="certificates__swiper"
-          >
-            {certificates.map((cert) => (
-              <SwiperSlide key={cert.id}>
-                <CertificateCard cert={cert} onOpen={openPdfModal} />
-              </SwiperSlide>
-            ))}
-         
-          </Swiper>
+  // Наведение — плавно тормозим/разгоняем
+  const handleMouseEnter = () => {
+    hoverRef.current = true;
+    targetSpeedRef.current = 0;
+  };
+  const handleMouseLeave = () => {
+    hoverRef.current = false;
+    targetSpeedRef.current = BASE_SPEED;
+  };
 
-          <div className="certificates__controls">
-            <button className="certificates__arrow certificates__arrow-prev">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <div className="certificates__dots"></div>
-            <button className="certificates__arrow certificates__arrow-next">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </div>
+  // Стартовая целевая скорость
+  useEffect(() => {
+    targetSpeedRef.current = BASE_SPEED;
+  }, []);
 
-        {modal}
-      </div>
-    );
-  }
+  const handleToggle = (cert) => {
+    setFlippedId((prev) => (prev === cert.id ? null : cert.id));
+  };
 
-  // Десктопная версия - 3 слайда
+  // Дублируем массив, чтобы лента была бесконечной
+  const loopItems = [...certificates, ...certificates,...certificates,...certificates];
+
   return (
-    <div className="certificates">
+    <div className={`certificates ${isMobile ? 'certificates--mobile' : ''}`}>
       <div className="certificates__container">
         <p className="certificates__title">Наши сертификаты</p>
 
-        <Swiper
-          modules={[Navigation, Pagination, A11y]}
-          slidesPerView={3}
-          spaceBetween={30}
-          centeredSlides={true}
-          navigation={{
-            prevEl: '.certificates__arrow-prev',
-            nextEl: '.certificates__arrow-next',
-          }}
-          pagination={{
-            el: '.certificates__dots',
-            clickable: true,
-            bulletClass: 'certificates__dot',
-            bulletActiveClass: 'certificates__dot-active',
-          }}
-          loop={true}
-          speed={500}
-          className="certificates__swiper"
+        <div
+          className="certificates__viewport"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          {certificates.map((cert) => (
-            <SwiperSlide key={cert.id}>
-              <CertificateCard cert={cert} onOpen={openPdfModal} />
-            </SwiperSlide>
-          ))}
-            {certificates.map((cert) => (
-            <SwiperSlide key={cert.id}>
-              <CertificateCard cert={cert} onOpen={openPdfModal} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        <div className="certificates__controls">
-          <button className="certificates__arrow certificates__arrow-prev">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <div className="certificates__dots"></div>
-          <button className="certificates__arrow certificates__arrow-next">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
+          <div className="certificates__track" ref={trackRef}>
+            {loopItems.map((cert, idx) => (
+              <div className="certificates__item" key={`${cert.id}-${idx}`}>
+                <CertificateCard
+                  cert={cert}
+                  onToggle={handleToggle}
+                  isFlipped={flippedId === cert.id}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      {modal}
     </div>
   );
 }
