@@ -578,7 +578,7 @@ transition: 0;
 
   &__item {
     flex: 0 0 auto;
-  width: calc((100vw) / 4); /* 40px = 2*20px padding, 60px = 2*gap */
+  width: calc((100vw) / 5); /* 40px = 2*20px padding, 60px = 2*gap */
   }
 
   /* ---------- Карточка с 3D-переворотом ---------- */
@@ -683,6 +683,117 @@ transition: 0;
     }
     .certificates__track {
       gap: 20px;
+    }
+  }
+}
+
+/* ===== Мобильный слайдер ===== */
+.certificates-mobile {
+  &__viewport {
+    width: 100%;
+    // overflow: hidden;
+    touch-action: pan-y;            /* вертикальный скролл страницы, горизонтальный — наш */
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &__track {
+    display: flex;
+    gap: 20px;
+    will-change: transform;
+    /* никаких transition — двигаем вручную через rAF/transform */
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &__item {
+    flex: 0 0 auto;
+    /* ширина карточки: на мобилке чуть уже вьюпорта, чтобы соседняя «подглядывала» */
+    width: 78vw;
+    max-width: 340px;
+  }
+
+  &__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(175, 123, 32, 0.3);
+    transition: background 0.3s, transform 0.3s;
+
+    &.is-active {
+      background: #af7b20;
+      transform: scale(1.3);
+    }
+  }
+}.certificates {
+  &__viewport {
+    width: 100%;
+    // overflow: hidden;
+    cursor: grab;
+    /* разрешаем вертикальный скролл страницы, горизонтальный — наш */
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &__track {
+    display: flex;
+    gap: 30px;
+    will-change: transform;
+  }
+
+  &__item {
+    flex: 0 0 auto;
+    /* десктоп: ровно 3 карточки в кадре */
+    width: calc((100vw - 60px) / 4);
+  }
+
+  /* ---------- Мобильная версия ---------- */
+  &--mobile {
+    .certificates__container {
+      // padding: 0 16px;
+    }
+
+    .certificates__viewport {
+      /* чуть «выпускаем» карточки за края, чтобы было видно, что лента едет */
+   
+    }
+
+    .certificates__track {
+      gap: 16px;
+    }
+
+    .certificates__item {
+      /* на мобилке — 1 карточка + «подглядывающий» кусочек соседней */
+      width: 78vw;
+      max-width: 340px;
+    }
+
+    /* карточка на мобилке чуть компактнее */
+    .certificates__card-title {
+      font-size: 15px;
+    }
+    .certificates__card-btn {
+      font-size: 14px;
+      padding: 8px 18px 12px;
     }
   }
 }
