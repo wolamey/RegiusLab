@@ -5,8 +5,8 @@ import './FAQ.scss';
 const faqData = [
   {
     question: 'Какие услуги вы предоставляете?',
-    answer:
-      'Мы предоставляем услуги по автоматизации бизнес-процессов, документооборота, производства и интернет-торговли, включая мониторинг цен конкурентов, автоматический расчет цен, синхронизацию товаров и автоматическую загрузку товаров в интернет-магазины. Также мы разрабатываем Telegram-ботов для различных задач, таких как боты-магазины, информационные боты, чат-боты и боты с искусственным интеллектом. В области 1С мы занимаемся настройкой логики, оптимизацией быстродействия, разработкой модулей и интеграцией с другими системами. В сфере блокчейн мы предлагаем разработку Smart контрактов, создание криптобирж, майнинг пулов и интеграцию блокчейн сетей. Для CMS Magento мы разрабатываем системы электронной коммерции, интегрируем их с ERP и POS системами, создаем PWA приложения и модули, а также занимаемся оптимизацией и поддержкой сайтов.',
+    // custom: true — means render the 3 cards instead of plain answer text
+    custom: true,
   },
   {
     question: 'Сколько стоят ваши услуги?',
@@ -36,6 +36,25 @@ const faqData = [
   },
 ];
 
+const customCards = [
+  {
+    title: 'Внедрение и развитие Битрикс24',
+    subtitle: 'Золотой партнер',
+    text:
+      'Выстраиваем единую систему продаж и управления компанией. Берем на себя полный цикл: от подбора лицензий, глубокой кастомизации и написания собственных модулей до интеграции с 1С, обучения сотрудников и техподдержки.',
+  },
+  {
+    title: 'Заказная разработка и AI-решения',
+    text:
+      'Проектируем и запускаем цифровые продукты под задачи вашего бизнеса: от корпоративных сайтов и интернет-магазинов до мобильных приложений и сложных Telegram-ботов. Внедряем искусственный интеллект в бизнес-процессы и связываем ИИ с 1С для автоматизации рутины и аналитики.',
+  },
+  {
+    title: 'Собственные продукты RegiusLab',
+    text:
+      'Создаем линейку готовых IT-решений и модулей на базе нашего опыта в автоматизации бизнеса. Это проверенные инструменты, которые позволяют быстро закрыть задачи компании без долгой и дорогой разработки с нуля.',
+  },
+];
+
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -44,38 +63,65 @@ export default function FAQ() {
   };
 
   const faqItems = useMemo(() => {
-    return faqData.map(({ question, answer }, index) => (
-      <div
-        key={index}
-        className="faq__item"
-        onClick={() => toggleFAQ(index)}
-        style={{
-          border:
-            openIndex === index ? '2px solid #AF7B20' : '2px solid #FFFFFF66',
-        }}
-      >
-        <p className="faq__num">{String(index + 1).padStart(2, '0')}</p>
-        <div className="faq__text">
-          <p className="faq__question">{question}</p>
-          <p
-            className="faq__answer"
-            style={{
-              maxHeight: openIndex === index ? '1000px' : '0',
-            }}
-          >
-            {answer}
-          </p>
-        </div>
-        <img
-          src={faqArrow}
-          className="faq__arrow"
+    return faqData.map(({ question, answer, custom }, index) => {
+      const isOpen = openIndex === index;
+
+      return (
+        <div
+          key={index}
+          className={`faq__item${custom ? ' faq__item--custom' : ''}`}
+          onClick={() => toggleFAQ(index)}
           style={{
-            transform: openIndex === index ? 'scaleY(-1)' : 'none',
+            border: isOpen ? '2px solid #AF7B20' : '2px solid #FFFFFF66',
           }}
-          alt=""
-        />
-      </div>
-    ));
+        >
+          <p className="faq__num">{String(index + 1).padStart(2, '0')}</p>
+          <div className="faq__text">
+            <p className="faq__question">{question}</p>
+
+            {custom ? (
+              <div
+                className="faq__custom-answer"
+                style={{
+                  maxHeight: isOpen ? '2000px' : '0',
+                  overflow: 'hidden',
+                  transition: 'max-height 0.4s ease',
+                }}
+              >
+                <div className="faq__cards">
+                  {customCards.map((card, i) => (
+                    <div className="faq__card" key={i}>
+                      <p className="faq__card-title">{card.title}</p>
+                      {card.subtitle && (
+                        <p className="faq__card-subtitle">{card.subtitle}</p>
+                      )}
+                      <p className="faq__card-text">{card.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <p
+                className="faq__answer"
+                style={{
+                  maxHeight: isOpen ? '1000px' : '0',
+                }}
+              >
+                {answer}
+              </p>
+            )}
+          </div>
+          <img
+            src={faqArrow}
+            className="faq__arrow"
+            style={{
+              transform: isOpen ? 'scaleY(-1)' : 'none',
+            }}
+            alt=""
+          />
+        </div>
+      );
+    });
   }, [openIndex]);
 
   return (
