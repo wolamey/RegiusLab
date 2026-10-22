@@ -3,7 +3,7 @@
 "automatization": {
   "id": 2,
   "href": "/automatization",
-  "main-back-img": "./automatization-main-back.png",
+  "main-back-img": "./automatization-main-back.jpeg",
   "main-title": "AI для вашего бизнеса",
   "main-description": "— интеллектуальные решения, которые работают на вас 24/7. Внедряйте AI в продажи, документооборот, поддержку и управление — сокращайте рутину, увеличивайте прибыль и принимайте решения на основе данных.",
   "main-bullits": [
@@ -291,7 +291,7 @@
   "telegram": {
     "id": 3,
     "href": "/telegram-bots",
-    "main-back-img": "./telegram-back.png",
+    "main-back-img": "./telegram-back.jpeg",
     "main-title": "Telegram боты",
     "main-description": "— ваш виртуальный помощник 24/7! Улучшайте клиентский сервис и автоматизируйте бизнес-процессы.",
     "main-bullits": [
