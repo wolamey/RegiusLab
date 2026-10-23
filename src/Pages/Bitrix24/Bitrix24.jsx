@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import ServiceForm from "../../Components/ServiceForm/ServiceForm";
 import Cases from "./Cases";
 import SectionNav from "./SectionNav";
+import RoleWhenBlocks from "../../Components/RoleWhenBlocks/RoleWhenBlocks";
+import serviceDb from "../../data/services.json";
 export default function Битрикс24({setBodyScroll}) {
     const videos = [
     {
@@ -649,170 +651,17 @@ setBodyScroll = {setBodyScroll}
         вашего бизнеса, дорабатываем функционал и интегрируем с 1С, телефонией,
         AI-сервисами и внешними системами.
       </p>
-    </div>
+    </div> 
   </div>
 </div>
-  <div id="section-role" className="role">
-  <div className="role__top">
-    <div className="role__text">
-      <p className="role__title">Роль CRM в бизнесе:</p>
-    </div>
-  </div>
-  <div className="role__wrapper">
-    <div className="role__item">
-      <img src="./role61.png" className="role__item-img" alt="" />
-      <p className="role__item-text">Управление воронкой продаж</p>
-    </div>
-    <div className="role__item">
-      <img src="./role62.png" className="role__item-img" alt="" />
-      <p className="role__item-text">
-        Удержание клиентов и повторные продажи
-      </p>
-    </div>
-    <div className="role__item">
-      <img src="./role63.png" className="role__item-img" alt="" />
-      <p className="role__item-text">Автоматизация рутинных процессов</p>
-    </div>
-    <div className="role__item">
-      <img src="./role64.png" className="role__item-img" alt="" />
-      <p className="role__item-text">
-        Аналитика по каждому этапу и сотруднику
-      </p>
-    </div>
-  </div>
-  <button
-    onClick={() => {
-      setModal(true);
-      setBodyScroll(true);
-    }}
-    className="role__button flare-button"
-  >
-    получить бесплатную консультацию
-  </button>
-</div>
-  <div id="section-when" className="when-new">
-  <p className="when-new__title title">
-    Когда пора внедрять CRM Битрикс24 или amoCRM?
-  </p>
-  <div className="when-new__wrapper">
-    <div className="when-new__item">
-      <div className="new__item_container">
-        <div className="when-new__item-top">
-          <img src="./when-b241.svg" className="when-new__img" alt="" />
-          <p className="when-new__item-title">
-            Продажи теряются в переписках
-          </p>
-        </div>
-        <div className="when-new__text">
-          <span className="when-new__text-item">Если</span>
-          <span className="when-new__text-item">
-            заявки и клиенты живут в разных мессенджерах, таблицах и блокнотах
-            менеджеров
-          </span>
-          <span className="when-new__text-item">
-            – CRM соберёт все коммуникации в единой воронке с историей сделок
-            и задачами.
-          </span>
-        </div>
-      </div>
-    </div>
-    <div className="when-new__item">
-      <div className="new__item_container">
-        <div className="when-new__item-top">
-          <img src="./when-b242.svg" className="when-new__img" alt="" />
-          <p className="when-new__item-title">
-            Нет прозрачности по сделкам
-          </p>
-        </div>
-        <div className="when-new__text">
-          <span className="when-new__text-item">Если</span>
-          <span className="when-new__text-item">
-            руководитель не видит, на каком этапе застряла каждая сделка и
-            сколько денег «в работе»
-          </span>
-          <span className="when-new__text-item">
-            – CRM даст прозрачные дашборды и прогноз выручки в реальном
-            времени.
-          </span>
-        </div>
-      </div>
-    </div>
-    <div className="when-new__item">
-      <div className="new__item_container">
-        <div className="when-new__item-top">
-          <img src="./when-b243.svg" className="when-new__img" alt="" />
-          <p className="when-new__item-title">Менеджеры забывают клиентов</p>
-        </div>
-        <div className="when-new__text">
-          <span className="when-new__text-item">Если</span>
-          <span className="when-new__text-item">
-            клиенты не получают напоминаний, а задачи теряются
-          </span>
-          <span className="when-new__text-item">
-            – CRM автоматически ставит задачи, шлёт напоминания и контролирует
-            каждый шаг.
-          </span>
-        </div>
-      </div>
-    </div>
-    <div className="when-new__item">
-      <div className="new__item_container">
-        <div className="when-new__item-top">
-          <img src="./when-b244.svg" className="when-new__img" alt="" />
-          <p className="when-new__item-title">Разрозненные системы</p>
-        </div>
-        <div className="when-new__text">
-          <span className="when-new__text-item">Если</span>
-          <span className="when-new__text-item">
-            1С, телефония, сайт и почта не связаны между собой
-          </span>
-          <span className="when-new__text-item">
-            – мы настроим интеграции, чтобы данные текли в CRM автоматически,
-            без ручного ввода.
-          </span>
-        </div>
-      </div>
-    </div>
-    <div className="when-new__item">
-      <div className="new__item_container">
-        <div className="when-new__item-top">
-          <img src="./when-b245.svg" className="when-new__img" alt="" />
-          <p className="when-new__item-title">
-            Сложно контролировать работу отдела
-          </p>
-        </div>
-        <div className="when-new__text">
-          <span className="when-new__text-item">Если</span>
-          <span className="when-new__text-item">
-            непонятно, кто из менеджеров эффективен, а кто теряет клиентов
-          </span>
-          <span className="when-new__text-item">
-            – CRM даст аналитику по каждому сотруднику: конверсия, средний чек,
-            скорость реакции.
-          </span>
-        </div>
-      </div>
-    </div>
-    <div className="when-new__item">
-      <div className="new__item_container">
-        <div className="when-new__item-top">
-          <img src="./when-b246.svg" className="when-new__img" alt="" />
-          <p className="when-new__item-title">Хочется больше автоматизации</p>
-        </div>
-        <div className="when-new__text">
-          <span className="when-new__text-item">Если</span>
-          <span className="when-new__text-item">
-            вы готовы внедрять AI-инструменты, роботов и сквозную аналитику
-          </span>
-          <span className="when-new__text-item">
-            – Битрикс24 и amoCRM станут фундаментом для роста и цифровой
-            трансформации.
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  {/* ============ РОЛЬ + КОГДА ВНЕДРЯТЬ (единый компонент) ============ */}
+      <RoleWhenBlocks
+        currentInfo={serviceDb.Bitrix24}
+        onConsult={() => {
+          setModal(true);
+          if (setBodyScroll) setBodyScroll(true);
+        }}
+      />
       <div id="section-services" className="our-services">
   <p className="our-services__title">Наши услуги</p>
   <div className="our-services__wrapper">

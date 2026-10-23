@@ -11,8 +11,9 @@ import stack8 from '../../assets/client8.jpg';
 import stack9 from '../../assets/client9.svg';
 import stack10 from '../../assets/client10.svg';
 import stack11 from '../../assets/client11.svg';
+import stack12 from '../../assets/client12.svg';
 
-const clients = [stack1, stack2, stack3, stack5, stack6, stack7, stack8, stack9, stack10, stack11];
+const clients = [stack1, stack2, stack3, stack5, stack6, stack7, stack8, stack9, stack10, stack11, stack12];
 
 // один непрерывный список: оригинал + точная копия
 const items = [...clients, ...clients];

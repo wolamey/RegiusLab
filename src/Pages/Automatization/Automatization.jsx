@@ -11,6 +11,7 @@ import escape from "../../assets/main-deco.png";
 import lightning from "../../assets/lightning.png";
 import case_good from "../../assets/case-good.svg";
 import case_good_dark from "../../assets/case-good-dark.svg";
+import RoleWhenBlocks from "../../Components/RoleWhenBlocks/RoleWhenBlocks";
 
 export default function Automatization() {
   const currentInfo = serviceDb.automatization;
@@ -108,61 +109,14 @@ export default function Automatization() {
         </div>
       </div>
 
-      {/* ============ РОЛЬ ============ */}
-      <div id="section-role" className="role">
-        <div className="role__top">
-          <div className="role__text">
-            <p className="role__title">{currentInfo["role-title"]}</p>
-          </div>
-        </div>
-
-        <div className="role__wrapper">
-          {currentInfo["role-wrapper"].map((role, index) => (
-            <div className="role__item" key={index}>
-              <img
-                src={role["role-item-img"]}
-                className="role__item-img"
-                alt=""
-              />
-              <p className="role__item-text">{role["role-item-title"]}</p>
-            </div>
-          ))}
-        </div>
-
-        <button
-          onClick={() => {
-            setModal(true);
-            setIsScrollDisabled(true);
-          }}
-          className="role__button flare-button"
-        >
-          получить бесплатную консультацию
-        </button>
-      </div>
-
-      {/* ============ КОГДА ВНЕДРЯТЬ ============ */}
-      <div id="section-when" className="when-new">
-        <p className="when-new__title title">{currentInfo["when-title"]}</p>
-        <div className="when-new__wrapper">
-          {currentInfo.when.map((when, index) => (
-            <div className="when-new__item" key={index}>
-              <div className="new__item_container">
-                <div className="when-new__item-top">
-                  <img src={when.img} className="when-new__img" alt="" />
-                  <p className="when-new__item-title">{when.title}</p>
-                </div>
-                <div className="when-new__text">
-                  {when.description.map((text, i) => (
-                    <span className="when-new__text-item" key={i}>
-                      {text}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* ============ РОЛЬ + КОГДА ВНЕДРЯТЬ (единый компонент) ============ */}
+      <RoleWhenBlocks
+        currentInfo={currentInfo}
+        onConsult={() => {
+          setModal(true);
+          setIsScrollDisabled(true);
+        }}
+      />
 
       {/* ============ НАШИ УСЛУГИ ============ */}
       <div id="section-services" className="our-services">
