@@ -1,8 +1,8 @@
 /* ============================================================
-   Единый компактный дизайн блоков «Роль ... в современном бизнесе»
+   Единый компактный дизайн блоков «Роль ... в бизнесе»
    и «Когда бизнесу пора внедрять ...?» для всех страниц услуг.
-   Один шрифт (Montserrat), одинаковая толщина заголовков и текста,
-   SVG-иконки в одном стиле (26px), уменьшенные отступы.
+   Montserrat, одинаковая толщина заголовков/текста,
+   уникальные SVG-иконки в одном стиле, анимация появления.
    ============================================================ */
 
 .rwb {
@@ -12,12 +12,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 22px;
   position: relative;
   z-index: 5;
 
   &--when {
-    padding: 28px 0 48px;
+    padding: 26px 0 44px;
   }
 }
 
@@ -38,14 +38,14 @@
 .rwb__grid {
   width: 100%;
   display: grid;
-  gap: 14px;
+  gap: 12px;
 
   &--role {
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
   }
 
   &--when {
-    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
 }
@@ -58,34 +58,80 @@
   width: 38px;
   height: 38px;
   flex-shrink: 0;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid rgba(175, 123, 32, 0.55);
-  background: rgba(175, 123, 32, 0.08);
+  background: linear-gradient(
+    145deg,
+    rgba(175, 123, 32, 0.16),
+    rgba(175, 123, 32, 0.04)
+  );
   color: #c9932f;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s, border-color 0.35s, color 0.35s;
 
   svg {
     width: 22px;
     height: 22px;
     display: block;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
 /* ---------- Карточка «Роль» ---------- */
 .rwb__card--role {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   padding: 16px 12px;
   text-align: center;
-  border-radius: 12px;
+  border-radius: 14px;
   border: 1px solid rgba(175, 123, 32, 0.55);
-  background: #000;
-  transition: border-color 0.25s, transform 0.25s;
+  background: radial-gradient(
+      120% 90% at 50% -20%,
+      rgba(175, 123, 32, 0.14) 0%,
+      rgba(175, 123, 32, 0) 55%
+    ),
+    #000;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+
+  /* мягкое световое пятно, скользящее по карточке */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 200, 90, 0.12),
+      transparent 45%
+    );
+    opacity: 0;
+    transform: translateX(-30%);
+    transition: opacity 0.4s, transform 0.6s ease;
+    pointer-events: none;
+  }
 
   &:hover {
-    border-color: #af7b20;
-    transform: translateY(-2px);
+    border-color: rgba(201, 147, 47, 0.9);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px -12px rgba(175, 123, 32, 0.35);
+
+    .rwb__icon {
+      transform: scale(1.06);
+      border-color: rgba(201, 147, 47, 0.9);
+      box-shadow: 0 0 0 4px rgba(175, 123, 32, 0.1);
+    }
+
+    .rwb__icon svg {
+      transform: rotate(-6deg) scale(1.08);
+    }
+
+    &::after {
+      opacity: 1;
+      transform: translateX(10%);
+    }
   }
 }
 
@@ -100,6 +146,8 @@
 
 /* ---------- Карточка «Когда» ---------- */
 .rwb__card--when {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -107,17 +155,67 @@
   border-radius: 14px;
   border: 1px solid rgba(175, 123, 32, 0.45);
   background: #000;
-  transition: border-color 0.25s;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+
+  /* тонкая золотая линия слева, раскрывающаяся при hover */
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 12%;
+    width: 2px;
+    height: 76%;
+    border-radius: 2px;
+    background: linear-gradient(#af7b20, rgba(175, 123, 32, 0.15));
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
 
   &:hover {
-    border-color: #af7b20;
+    border-color: rgba(201, 147, 47, 0.9);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px -14px rgba(175, 123, 32, 0.4);
+
+    &::before {
+      transform: scaleY(1);
+    }
+
+    .rwb__icon {
+      transform: scale(1.06);
+      border-color: rgba(201, 147, 47, 0.9);
+      box-shadow: 0 0 0 4px rgba(175, 123, 32, 0.1);
+    }
+
+    .rwb__icon svg {
+      transform: rotate(-6deg) scale(1.08);
+    }
   }
+}
+
+.rwb__num {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: rgba(175, 123, 32, 0.22);
+  transition: color 0.3s;
+  pointer-events: none;
+}
+
+.rwb__card--when:hover .rwb__num {
+  color: rgba(201, 147, 47, 0.5);
 }
 
 .rwb__card-top {
   display: flex;
   align-items: center;
   gap: 10px;
+  padding-right: 26px;
 }
 
 .rwb__card-title {
@@ -141,6 +239,38 @@
 .rwb__hl {
   color: #af7b20;
   font-weight: 600;
+}
+
+/* ---------- Анимация появления карточек при скролле ---------- */
+.rwb__grid .rwb__card {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.rwb__grid.is-visible .rwb__card {
+  animation: rwb-card-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes rwb-card-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rwb__grid .rwb__card {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+  .rwb__icon,
+  .rwb__card--role,
+  .rwb__card--when,
+  .rwb__card--when::before {
+    transition: none;
+  }
 }
 
 /* ---------- Кнопка ---------- */
@@ -169,6 +299,15 @@
 }
 
 /* ---------- Адаптив ---------- */
+@media (max-width: 1024px) {
+  .rwb__grid--when {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rwb__grid--role {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .rwb {
     width: 94%;
@@ -185,16 +324,16 @@
     gap: 10px;
   }
 
+  .rwb__grid--when {
+    grid-template-columns: 1fr;
+  }
+
   .rwb__card--role {
     padding: 14px 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .rwb__grid--role {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .rwb__card-text {
     font-size: 13px;
   }
