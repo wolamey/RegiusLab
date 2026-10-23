@@ -1,0 +1,218 @@
+/* ============================================================
+   Кейсы «Наши реализованные сайты» (страница Разработка сайтов)
+   Дополняет стили аккордеона из Bitrix24/Cases.scss (.bitrix-case)
+   ============================================================ */
+
+/* ---------- Компактный блок «Наши услуги» (4 пункта без описаний) ---------- */
+.our-services-new--compact {
+  display: none;
+  .our-services-new__wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .our-services-new__item {
+    width: 100%;
+    padding: 26px 28px;
+    border-radius: 18px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+
+  .our-services-new__item:nth-child(2),
+  .our-services-new__item:nth-child(4) {
+    background: inherit;
+  }
+
+  .our-services-new__item:hover {
+    transform: translateY(-4px);
+  }
+
+  .our-services-new__item-content {
+    width: 100%;
+  }
+
+  .our-services-new__item-content-container {
+    align-items: center;
+  }
+
+  .our-services-new__item-content-title {
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .our-services-new__wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/* ---------- Карточка кейса сайта ---------- */
+.sites-case {
+  --accent: #af7b20;
+margin-top: 0;
+  .sites-case__logo {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 35%, transparent),
+      color-mix(in srgb, var(--accent) 12%, transparent)
+    ) !important;
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+
+    span {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--accent);
+      line-height: 1;
+    }
+  }
+
+  /* ссылка «Открыть сайт» в шапке аккордеона */
+  .sites-case__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+    margin-right: 14px;
+    padding: 9px 16px;
+    border-radius: 30px;
+    border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    color: var(--accent);
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+
+    svg {
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      background: color-mix(in srgb, var(--accent) 22%, transparent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px color-mix(in srgb, var(--accent) 25%, transparent);
+
+      svg {
+        transform: translate(2px, -2px);
+      }
+    }
+  }
+
+  /* ---------- Скриншоты ---------- */
+  .sites-case__screens {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 20px;
+    align-items: start;
+    margin-bottom: 26px;
+  }
+
+  .sites-case__screen {
+    margin: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    figcaption {
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.5;
+      opacity: 0.65;
+
+      code {
+        font-family: "Montserrat", monospace;
+        padding: 2px 7px;
+        border-radius: 6px;
+        background: color-mix(in srgb, var(--accent) 14%, transparent);
+        color: var(--accent);
+        font-size: 11px;
+      }
+    }
+  }
+
+  .sites-case__screen--mobile {
+    img {
+      border-radius: 20px;
+    }
+  }
+
+  /* ---------- Теги ---------- */
+  .sites-case__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .sites-case__tag {
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    color: color-mix(in srgb, var(--accent) 85%, white);
+  }
+
+  /* ---------- Кнопка-ссылка внизу кейса ---------- */
+  .sites-case__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 22px;
+    padding: 13px 28px;
+    border-radius: 34px;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(
+      90deg,
+      var(--accent),
+      color-mix(in srgb, var(--accent) 60%, #ffd970)
+    );
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px color-mix(in srgb, var(--accent) 40%, transparent);
+    }
+  }
+
+  /* адаптив */
+  @media (max-width: 900px) {
+    .sites-case__screens {
+      grid-template-columns: 1fr;
+
+      .sites-case__screen--mobile {
+        max-width: 260px;
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .sites-case__link {
+      display: none; /* на мобильных — переход по кнопке внутри кейса */
+    }
+  }
+}
+
+/* Пунктирная рамка-заглушка, пока скриншот не загружен (картинка скрыта через onError) */
+
+/* шапка аккордеона может содержать ссылку — не наследовать подчёркивание */
+.bitrix-case__head a {
+  text-decoration: none;
+}

@@ -12,6 +12,11 @@ import case_good_dark from '../../assets/case-good-dark.svg';
 import lightning from '../../assets/lightning.png';
 
 import escape from '../../assets/main-deco.png';
+
+// Styles for the shared accordion-cases block (used on SitesDev and other pages)
+import '../../Pages/Bitrix24/Cases.scss';
+import '../../Pages/SitesDev/SitesCases.scss';
+
 export default function ServiceNewTemplate({currentInfo}) {
 
   const [isScrollDisabled, setIsScrollDisabled] = useState(false);
@@ -32,6 +37,8 @@ export default function ServiceNewTemplate({currentInfo}) {
     };
   }, [isScrollDisabled]);
   const [modal, setModal] = useState(false);
+  // Открытый кейс в аккордеоне «Наши реализованные сайты» (-1 — все закрыты)
+  const [caseOpen, setCaseOpen] = useState(0);
 
   const services = [
     serviceDb.automatization,
@@ -137,7 +144,7 @@ export default function ServiceNewTemplate({currentInfo}) {
         />
       </div>
 
-      <div className="our-services-new">
+      <div className="our-services-new our-services-new--compact" id="section-services">
         <p className="our-services-new__title">Наши услуги</p>
         <div className="our-services-new__wrapper">
           {currentInfo.services.map((service, index) => (
@@ -153,28 +160,32 @@ export default function ServiceNewTemplate({currentInfo}) {
                     </p>
                     <div className="our-services-new__item-content-line"></div>
 
-                    <div className="our-services-new__item-content-lightning-wrapper">
-                      {service.description.map((text, index) => (
-                        <div
-                          key={index}
-                          className="our-services-new__item-wrapper"
-                        >
-                          <img
-                            src={lightning}
-                            className="our-services-new__item-img-lightning"
-                            alt=""
-                          />
-                          <p className="our-services-new__item-content-description">
-                            {text}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
+                    {Array.isArray(service.description) && service.description.length > 0 && (
+                      <div className="our-services-new__item-content-lightning-wrapper">
+                        {service.description.map((text, index) => (
+                          <div
+                            key={index}
+                            className="our-services-new__item-wrapper"
+                          >
+                            <img
+                              src={lightning}
+                              className="our-services-new__item-img-lightning"
+                              alt=""
+                            />
+                            <p className="our-services-new__item-content-description">
+                              {text}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
 
-              <div className="our-services-new__item-right ">
+              {/* Блок-кейс справа — рендерим только если в данных есть right */}
+              {service.right && (
+                <div className="our-services-new__item-right ">
                 <div className="our-services-new__item-pc">
                   <img
                     src={service.right.imgPC}
@@ -248,7 +259,8 @@ export default function ServiceNewTemplate({currentInfo}) {
                     </div>
                   </div>
                 </div>
-              </div>
+                </div>
+              )}
 
               {/* <img
               src={service.img}
@@ -259,6 +271,141 @@ export default function ServiceNewTemplate({currentInfo}) {
           ))}
         </div>
       </div>
+
+      {/* ============ РЕАЛЬНЫЕ КЕЙСЫ (аккордеон, как на остальных страницах) ============ */}
+      {currentInfo.cases && currentInfo.cases.length > 0 && (
+        <section id="section-cases" className="bitrix-cases">
+          <div className="bitrix-cases__glow" aria-hidden="true" />
+
+          <div className="bitrix-cases__header">
+            <span className="bitrix-cases__kicker">Портфолио RegiusLab</span>
+            <h3 className="bitrix-cases__section-title">Наши реализованные сайты</h3>
+            <p className="bitrix-cases__lead">
+              Живые проекты — нажмите на кейс, чтобы посмотреть детали, и переходите на сайт
+            </p>
+          </div>
+
+          <div className="bitrix-cases__wrapper">
+            {currentInfo.cases.map((c, i) => {
+              const isOpen = caseOpen === i;
+              return (
+                <article
+                  key={i}
+                  className={`bitrix-case sites-case ${isOpen ? "is-open" : ""}`}
+                  style={{ "--accent": c.accent }}
+                >
+                  <div className="bitrix-case__head" role="button" tabIndex={0}
+                    onClick={() => setCaseOpen(isOpen ? -1 : i)}
+                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setCaseOpen(isOpen ? -1 : i); } }}
+                  >
+                    <div className="bitrix-case__head-left">
+                      <div className="bitrix-case__icon sites-case__logo" aria-hidden="true">
+                        <span>{c.name.charAt(0)}</span>
+                      </div>
+                      <div className="bitrix-case__head-text">
+                        <span className="bitrix-case__badge">
+                          Сайт {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <h4 className="bitrix-case__title">{c.name}</h4>
+                        <p className="bitrix-case__subtitle">{c.type}</p>
+                      </div>
+                    </div>
+
+                    <a
+                      className="sites-case__link"
+                      href={c.url}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      onClick={(e) => e.stopPropagation()}
+                      title={`Открыть ${c.domain} в новой вкладке`}
+                    >
+                      Открыть сайт
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </a>
+
+                    <div className={`bitrix-case__toggle ${isOpen ? "is-open" : ""}`} aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <path d="M5 8.5L11 14.5L17 8.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div className="bitrix-case__collapse">
+                    <div className="bitrix-case__body">
+                      {/* Скриншоты сайта */}
+                      <div className="sites-case__screens">
+                        <figure className="sites-case__screen sites-case__screen--desktop">
+                          <img
+                            src={c.screens.desktop}
+                            alt={`${c.name} — скриншот главной страницы для компьютера`}
+                            loading="lazy"
+                            onError={(e) => { e.currentTarget.style.display = "none"; }}
+                          />
+                 
+                        </figure>
+
+                        <figure className="sites-case__screen sites-case__screen--mobile">
+                          <img
+                            src={c.screens.mobile}
+                            alt={`${c.name} — скриншот мобильной версии сайта`}
+                            loading="lazy"
+                            onError={(e) => { e.currentTarget.style.display = "none"; }}
+                          />
+                 
+                        </figure>
+                      </div>
+
+                      {/* Задача */}
+                      <div className="bitrix-case__block">
+                        <h5 className="bitrix-case__block-title">
+                          <span className="bitrix-case__block-dot" />
+                          Задача
+                        </h5>
+                        <p className="bitrix-case__text">{c.situation}</p>
+                      </div>
+
+                      {/* Решение */}
+                      <div className="bitrix-case__block">
+                        <h5 className="bitrix-case__block-title">
+                          <span className="bitrix-case__block-dot" />
+                          Что мы сделали
+                        </h5>
+                        <ul className="bitrix-case__list">
+                          {c.solution.map((s, si) => (
+                            <li key={si}>
+                              <strong>{s[0] + " "}</strong>
+                              {s[1]}
+                            </li>
+                          ))}
+                        </ul>
+                        {c.tags && (
+                          <div className="sites-case__tags">
+                            {c.tags.map((t, ti) => (
+                              <span key={ti} className="sites-case__tag">{t}</span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      <a
+                        className="sites-case__cta bitrix-case__cta flare-button"
+                        href={c.url}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                      >
+                        Смотреть сайт {c.domain}
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
       <button
         onClick={() => {
           setModal(true);
