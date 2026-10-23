@@ -479,7 +479,7 @@
   "1Cdev": {
     "id": 4,
     "href": "/1c-development",
-    "main-back-img": "./1c-back.png",
+    "main-back-img": "./1c-back.jpeg",
     "main-title": "1C разработка",
     "main-description": "— ваш бизнес на автопилоте! Создавайте уникальные решения для автоматизации и управления.",
     "main-bullits": [
@@ -633,7 +633,7 @@
   "SitesDev": {
     "id": 5,
     "href": "/sites-dev",
-    "main-back-img": "./magento-back.png",
+    "main-back-img": "./magento-back.jpeg",
     "main-title": "Разработка сайтов",
     "main-description": "— Разрабатываем сайты, которые продают и работают на результат.",
     "main-bullits": [

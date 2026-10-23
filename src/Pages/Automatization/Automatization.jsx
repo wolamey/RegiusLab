@@ -11,6 +11,7 @@ import escape from "../../assets/main-deco.png";
 import lightning from "../../assets/lightning.png";
 import case_good from "../../assets/case-good.svg";
 import case_good_dark from "../../assets/case-good-dark.svg";
+import RoleWhenBlocks from "../../Components/RoleWhenBlocks/RoleWhenBlocks";
 
 export default function Automatization() {
   const currentInfo = serviceDb.automatization;
