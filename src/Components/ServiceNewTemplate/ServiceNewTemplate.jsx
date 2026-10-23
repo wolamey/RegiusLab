@@ -259,6 +259,7 @@ export default function ServiceNewTemplate({currentInfo}) {
                     </div>
                   </div>
                 </div>
+                </div>
               )}
 
               {/* <img
@@ -342,10 +343,7 @@ export default function ServiceNewTemplate({currentInfo}) {
                             loading="lazy"
                             onError={(e) => { e.currentTarget.style.display = "none"; }}
                           />
-                          <figcaption>
-                            📷 Скриншот главной страницы для ПК → положить файл{" "}
-                            <code>public/cases/{c.screens.desktop.split("/").pop()}</code>
-                          </figcaption>
+                 
                         </figure>
 
                         <figure className="sites-case__screen sites-case__screen--mobile">
@@ -355,10 +353,7 @@ export default function ServiceNewTemplate({currentInfo}) {
                             loading="lazy"
                             onError={(e) => { e.currentTarget.style.display = "none"; }}
                           />
-                          <figcaption>
-                            📱 Скриншот мобильной версии → положить файл{" "}
-                            <code>public/cases/{c.screens.mobile.split("/").pop()}</code>
-                          </figcaption>
+                 
                         </figure>
                       </div>
 

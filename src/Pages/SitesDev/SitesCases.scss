@@ -5,6 +5,7 @@
 
 /* ---------- Компактный блок «Наши услуги» (4 пункта без описаний) ---------- */
 .our-services-new--compact {
+  display: none;
   .our-services-new__wrapper {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -49,7 +50,7 @@
 /* ---------- Карточка кейса сайта ---------- */
 .sites-case {
   --accent: #af7b20;
-
+margin-top: 0;
   .sites-case__logo {
     background: linear-gradient(
       135deg,
