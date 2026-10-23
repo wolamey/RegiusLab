@@ -649,7 +649,7 @@ setBodyScroll = {setBodyScroll}
         вашего бизнеса, дорабатываем функционал и интегрируем с 1С, телефонией,
         AI-сервисами и внешними системами.
       </p>
-    </div>
+    </div> 
   </div>
 </div>
   <div id="section-role" className="role">
